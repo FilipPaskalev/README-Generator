@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/FilipPaskalev/README-Generator/issues"
   },
-  "homepage": "https://github.com/FilipPaskalev/README-Generator#readme"
+  "homepage": "https://github.com/FilipPaskalev/README-Generator#readme",
+  "dependencies": {
+    "inquirer": "^9.2.14"
+  }
 }
