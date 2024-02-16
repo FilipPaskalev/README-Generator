@@ -24,5 +24,8 @@
   "homepage": "https://github.com/FilipPaskalev/README-Generator#readme",
   "dependencies": {
     "inquirer": "^9.2.14"
+  },
+  "devDependencies": {
+    "prettier": "3.2.5"
   }
 }
