@@ -1,0 +1,24 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "A Node.js project designed to automate the creation of comprehensive README files for GitHub repositories, enhancing documentation efficiency and consistency.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FilipPaskalev/README-Generator.git"
+  },
+  "keywords": [
+    "readme",
+    "generator",
+    "professional"
+  ],
+  "author": "Filip Paskalev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FilipPaskalev/README-Generator/issues"
+  },
+  "homepage": "https://github.com/FilipPaskalev/README-Generator#readme"
+}
