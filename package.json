@@ -4,7 +4,7 @@
   "description": "A Node.js project designed to automate the creation of comprehensive README files for GitHub repositories, enhancing documentation efficiency and consistency.",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "repository": {
