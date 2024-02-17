@@ -4,7 +4,6 @@ const inquirer = require('inquirer')
 const generateMarkdown = require('./scripts/generateMarkdown')
 
 // array of questions for user
-// prettier-ignore
 // const readmeQuestions = {
 //   projectTitle: "What is the title of your project? (Required)",
 //   description: "Provide a brief overview of your project?",
@@ -27,7 +26,7 @@ const generateMarkdown = require('./scripts/generateMarkdown')
 //   resources: "Are there any additional resources related to your project?",
 // };
 
-let answers = [];
+let answers = []
 
 // function to write README file
 function writeToFile(fileName, data) {}
