@@ -1,33 +1,32 @@
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown");
+const fs = require('fs')
+const path = require('path')
+const inquirer = require('inquirer')
+const generateMarkdown = require('./scripts/generateMarkdown')
 
 // array of questions for user
-// prettier-ignore
-const readmeQuestions = {
-  projectTitle: "What is the title of your project? (Required)",
-  description: "Provide a brief overview of your project?",
-  tableOfContents:
-    "Do you want to generate a table of contents?",
-  installation: "What are the steps to install your project?",
-  usage: "How do you use your project? Provide examples if possible.",
-  features: "What features does your project offer?",
-  contributing: "How can others contribute to your project?",
-  credits:
-    "Do you want to give credit to anyone or any resources that helped with your project?",
-  license: "What license is your project under?",
-  tests:
-    "Are there any tests included with your project? If so, how do you run them?",
-  questions: "How can users reach out with questions or feedback?",
-  acknowledgements:
-    "Do you want to acknowledge anyone or any resources that helped with your project?",
-  support: "Where can users go for support regarding your project?",
-  dependencies: "List any dependencies required to run your project.",
-  resources: "Are there any additional resources related to your project?",
-};
+// const readmeQuestions = {
+//   projectTitle: "What is the title of your project? (Required)",
+//   description: "Provide a brief overview of your project?",
+//   tableOfContents:
+//     "Do you want to generate a table of contents?",
+//   installation: "What are the steps to install your project?",
+//   usage: "How do you use your project? Provide examples if possible.",
+//   features: "What features does your project offer?",
+//   contributing: "How can others contribute to your project?",
+//   credits:
+//     "Do you want to give credit to anyone or any resources that helped with your project?",
+//   license: "What license is your project under?",
+//   tests:
+//     "Are there any tests included with your project? If so, how do you run them?",
+//   questions: "How can users reach out with questions or feedback?",
+//   acknowledgements:
+//     "Do you want to acknowledge anyone or any resources that helped with your project?",
+//   support: "Where can users go for support regarding your project?",
+//   dependencies: "List any dependencies required to run your project.",
+//   resources: "Are there any additional resources related to your project?",
+// };
 
-let answers = [];
+let answers = []
 
 // function to write README file
 function writeToFile(fileName, data) {}
@@ -36,7 +35,7 @@ function writeToFile(fileName, data) {}
 function init() {}
 
 // function call to initialize program
-init();
+init()
 
 // # <Your-Project-Title>
 
