@@ -1,15 +1,15 @@
-const licenses = require('./licenses')
+const licenses = require('./licenses');
 
 const consoleInputHelpers = {
   pleaseEnter: 'Please enter',
   ifYouDoNotHaveAny: "If you don't have any, just press enter",
   ifYouNotSure: 'If you are not sure, you can add it later in the README.md file',
   ifApplicable: 'if applicable',
-}
+};
 
 // Function to extract license abbreviations from the licensesMap
 function getLicenseAbbreviations() {
-  return Array.from(licenses.keys())
+  return Array.from(licenses.keys());
 }
 
 // array of questions for user
@@ -85,14 +85,14 @@ const questions = [
     message: 'Provide a valid email address for users to reach you for questions:',
     default: () => {},
     validate: function (authorEmail) {
-      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail)
+      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
 
       if (valid) {
-        console.log('Thank you for providing a valid email address.')
-        return true
+        console.log('Thank you for providing a valid email address.');
+        return true;
       } else {
-        console.log('Please enter a valid email address.')
-        return false
+        console.log('Please enter a valid email address.');
+        return false;
       }
     },
   },
@@ -112,9 +112,9 @@ const questions = [
     name: 'questions',
     message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
   },
-]
+];
 
-module.exports = questions
+module.exports = questions;
 
 // Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 

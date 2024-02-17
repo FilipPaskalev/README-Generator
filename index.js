@@ -11,6 +11,9 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
+  let fileName = 'Readme.md'
+  console.log('Welcome to the Professional README.md Generator')
+
   inquirer.prompt(questions).then((responses) => {
     console.log('Creating Professional README.md File...')
     writeToFile('./dist/README.md', generateMarkdown({ ...responses }))
