@@ -6,10 +6,10 @@ const generateMarkdown = require("./utils/generateMarkdown");
 // array of questions for user
 // prettier-ignore
 const readmeQuestions = {
-  projectTitle: "What is the title of your project?",
+  projectTitle: "What is the title of your project? (Required)",
   description: "Provide a brief overview of your project?",
   tableOfContents:
-    "Do you want to include a table of contents? If so, what sections would you like to include?",
+    "Do you want to generate a table of contents?",
   installation: "What are the steps to install your project?",
   usage: "How do you use your project? Provide examples if possible.",
   features: "What features does your project offer?",
