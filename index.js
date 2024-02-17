@@ -1,7 +1,7 @@
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const generateMarkdown = require("./scripts/generateMarkdown");
+const fs = require('fs')
+const path = require('path')
+const inquirer = require('inquirer')
+const generateMarkdown = require('./scripts/generateMarkdown')
 
 // array of questions for user
 // prettier-ignore
@@ -36,7 +36,7 @@ function writeToFile(fileName, data) {}
 function init() {}
 
 // function call to initialize program
-init();
+init()
 
 // # <Your-Project-Title>
 
