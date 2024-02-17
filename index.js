@@ -4,6 +4,8 @@ const inquirer = require('inquirer')
 const generateMarkdown = require('./scripts/generateMarkdown')
 
 // array of questions for user
+const questions = []
+
 // const readmeQuestions = {
 //   projectTitle: "What is the title of your project? (Required)",
 //   description: "Provide a brief overview of your project?",
@@ -26,13 +28,16 @@ const generateMarkdown = require('./scripts/generateMarkdown')
 //   resources: "Are there any additional resources related to your project?",
 // };
 
-let answers = []
-
 // function to write README file
 function writeToFile(fileName, data) {}
 
 // function to initialize program
-function init() {}
+function init() {
+    inquirer.prompt(questions).then((responses) => {
+        console.log('Creating Professional README.md File...')
+        writeToFile('./dist/README.md', generateMarkdown({ ...responses }))
+    })
+}
 
 // function call to initialize program
 init()
