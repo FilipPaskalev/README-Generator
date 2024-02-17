@@ -2,46 +2,53 @@ const consoleInputHelpers = {
   pleaseEnter: 'Please enter',
   ifYouDoNotHaveAny: "If you don't have any, just press enter",
   ifYouNotSure: 'If you are not sure, you can add it later in the README.md file',
+  ifApplicable: 'if applicable',
 }
 
-const licenses = [
-  { name: 'Academic Free License v3.0', abbreviation: 'AFL-3.0' },
-  { name: 'Apache license 2.0', abbreviation: 'Apache-2.0' },
-  { name: 'Artistic license 2.0', abbreviation: 'Artistic-2.0' },
-  { name: 'Boost Software License 1.0', abbreviation: 'BSL-1.0' },
-  { name: "BSD 2-clause 'Simplified' license", abbreviation: 'BSD-2-Clause' },
-  { name: "BSD 3-clause 'New' or 'Revised' license", abbreviation: 'BSD-3-Clause' },
-  { name: 'BSD 3-clause Clear license', abbreviation: 'BSD-3-Clause-Clear' },
-  { name: "BSD 4-clause 'Original' or 'Old' license", abbreviation: 'BSD-4-Clause' },
-  { name: 'BSD Zero-Clause license', abbreviation: '0BSD' },
-  { name: 'Creative Commons license family', abbreviation: 'CC' },
-  { name: 'Creative Commons Zero v1.0 Universal', abbreviation: 'CC0-1.0' },
-  { name: 'Creative Commons Attribution 4.0', abbreviation: 'CC-BY-4.0' },
-  { name: 'Creative Commons Attribution ShareAlike 4.0', abbreviation: 'CC-BY-SA-4.0' },
-  { name: 'Do What The F*ck You Want To Public License', abbreviation: 'WTFPL' },
-  { name: 'Educational Community License v2.0', abbreviation: 'ECL-2.0' },
-  { name: 'Eclipse Public License 1.0', abbreviation: 'EPL-1.0' },
-  { name: 'Eclipse Public License 2.0', abbreviation: 'EPL-2.0' },
-  { name: 'European Union Public License 1.1', abbreviation: 'EUPL-1.1' },
-  { name: 'GNU Affero General Public License v3.0', abbreviation: 'AGPL-3.0' },
-  { name: 'GNU General Public License family', abbreviation: 'GPL' },
-  { name: 'GNU General Public License v2.0', abbreviation: 'GPL-2.0' },
-  { name: 'GNU General Public License v3.0', abbreviation: 'GPL-3.0' },
-  { name: 'GNU Lesser General Public License family', abbreviation: 'LGPL' },
-  { name: 'GNU Lesser General Public License v2.1', abbreviation: 'LGPL-2.1' },
-  { name: 'GNU Lesser General Public License v3.0', abbreviation: 'LGPL-3.0' },
-  { name: 'ISC', abbreviation: 'ISC' },
-  { name: 'LaTeX Project Public License v1.3c', abbreviation: 'LPPL-1.3c' },
-  { name: 'Microsoft Public License', abbreviation: 'MS-PL' },
-  { name: 'MIT', abbreviation: 'MIT' },
-  { name: 'Mozilla Public License 2.0', abbreviation: 'MPL-2.0' },
-  { name: 'Open Software License 3.0', abbreviation: 'OSL-3.0' },
-  { name: 'PostgreSQL License', abbreviation: 'PostgreSQL' },
-  { name: 'SIL Open Font License 1.1', abbreviation: 'OFL-1.1' },
-  { name: 'University of Illinois/NCSA Open Source License', abbreviation: 'NCSA' },
-  { name: 'The Unlicense', abbreviation: 'Unlicense' },
-  { name: 'zLib License', abbreviation: 'Zlib' },
-]
+const licenses = new Map([
+  ['none', 'none'], // Set 'none' for the default choice
+  ['AFL-3.0', 'Academic Free License v3.0'],
+  ['Apache-2.0', 'Apache license 2.0'],
+  ['Artistic-2.0', 'Artistic license 2.0'],
+  ['BSL-1.0', 'Boost Software License 1.0'],
+  ['BSD-2-Clause', "BSD 2-clause 'Simplified' license"],
+  ['BSD-3-Clause', "BSD 3-clause 'New' or 'Revised' license"],
+  ['BSD-3-Clause-Clear', 'BSD 3-clause Clear license'],
+  ['BSD-4-Clause', "BSD 4-clause 'Original' or 'Old' license"],
+  ['0BSD', 'BSD Zero-Clause license'],
+  ['CC', 'Creative Commons license family'],
+  ['CC0-1.0', 'Creative Commons Zero v1.0 Universal'],
+  ['CC-BY-4.0', 'Creative Commons Attribution 4.0'],
+  ['CC-BY-SA-4.0', 'Creative Commons Attribution ShareAlike 4.0'],
+  ['WTFPL', 'Do What The F*ck You Want To Public License'],
+  ['ECL-2.0', 'Educational Community License v2.0'],
+  ['EPL-1.0', 'Eclipse Public License 1.0'],
+  ['EPL-2.0', 'Eclipse Public License 2.0'],
+  ['EUPL-1.1', 'European Union Public License 1.1'],
+  ['AGPL-3.0', 'GNU Affero General Public License v3.0'],
+  ['GPL', 'GNU General Public License family'],
+  ['GPL-2.0', 'GNU General Public License v2.0'],
+  ['GPL-3.0', 'GNU General Public License v3.0'],
+  ['LGPL', 'GNU Lesser General Public License family'],
+  ['LGPL-2.1', 'GNU Lesser General Public License v2.1'],
+  ['LGPL-3.0', 'GNU Lesser General Public License v3.0'],
+  ['ISC', 'ISC'],
+  ['LPPL-1.3c', 'LaTeX Project Public License v1.3c'],
+  ['MS-PL', 'Microsoft Public License'],
+  ['MIT', 'MIT'],
+  ['MPL-2.0', 'Mozilla Public License 2.0'],
+  ['OSL-3.0', 'Open Software License 3.0'],
+  ['PostgreSQL', 'PostgreSQL License'],
+  ['OFL-1.1', 'SIL Open Font License 1.1'],
+  ['NCSA', 'University of Illinois/NCSA Open Source License'],
+  ['Unlicense', 'The Unlicense'],
+  ['Zlib', 'zLib License'],
+])
+
+// Function to extract license abbreviations from the licensesMap
+function getLicenseAbbreviations() {
+  return Array.from(licenses.keys())
+}
 
 // array of questions for user
 const questions = [
@@ -84,7 +91,11 @@ const questions = [
     type: 'checkbox',
     name: 'license',
     message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
-    choices: ['MIT', 'APACHE2.0', 'Boost1.0', 'MPL2.0', 'BSD2', 'BSD3', 'none'],
+    default: ['none'],
+    choices: (questions.find((question) => question.name === 'license').choices = [
+      ...getLicenseAbbreviations(),
+      'none',
+    ]),
   },
   {
     type: 'input',
@@ -137,7 +148,7 @@ const questions = [
   {
     type: 'questions',
     name: 'questions',
-    message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions:`,
+    message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
   },
 ]
 

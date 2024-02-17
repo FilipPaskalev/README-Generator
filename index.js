@@ -5,14 +5,16 @@ const generateMarkdown = require('./scripts/generateMarkdown')
 const questions = require('./utils/questions')
 
 // function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+}
 
 // function to initialize program
 function init() {
-    inquirer.prompt(questions).then((responses) => {
-        console.log('Creating Professional README.md File...')
-        writeToFile('./dist/README.md', generateMarkdown({ ...responses }))
-    })
+  inquirer.prompt(questions).then((responses) => {
+    console.log('Creating Professional README.md File...')
+    writeToFile('./dist/README.md', generateMarkdown({ ...responses }))
+  })
 }
 
 // function call to initialize program
