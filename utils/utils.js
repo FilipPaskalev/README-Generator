@@ -1,5 +1,74 @@
+const consoleInputHelpers = {
+  pleaseEnter: 'Please enter the',
+  ifYouDoNotHaveAny: "If you don't have any, just press enter",
+  ifYouNotSure: 'If you are not sure, you can add it later in the README.md file',
+}
+
 // array of questions for user
-const questions = []
+const questions = [
+  {
+    type: 'input',
+    name: 'projectTitle',
+    message: `${consoleInputHelpers.pleaseEnter} title of your project:`,
+  },
+  {
+    type: 'input',
+    name: 'projectDescription',
+    message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
+  },
+  {
+    type: 'input',
+    name: 'projectScreenshot',
+    message: `${consoleInputHelpers.pleaseEnter} relative path to the image you want to use as the screenshot for your project (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  },
+  {
+    type: 'input',
+    name: 'deployedProjectLink',
+    message: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  },
+  {
+    type: 'checkbox',
+    name: 'license',
+    message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
+    choices: ['MIT', 'APACHE2.0', 'Boost1.0', 'MPL2.0', 'BSD2', 'BSD3', 'none'],
+  },
+  {
+    type: 'input',
+    name: 'dependencies',
+    message: `List any project dependencies here (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  },
+  {
+    type: 'input',
+    name: 'features',
+    message: 'List some cool features about this project here (if any):',
+  },
+  {
+    type: 'input',
+    name: 'languagesAndTechnologies',
+    message: `${consoleInputHelpers.pleaseEnter} languages or technologies associated with this project:`,
+  },
+  {
+    type: 'input',
+    name: 'authorName',
+    message: 'Write your GitHub username here:',
+  },
+  {
+    type: 'input',
+    name: 'authorEmail',
+    message: 'Provide a valid email address for users to reach you for questions:',
+  },
+  {
+    type: 'input',
+    name: 'contributors',
+    message: `Please list any contributors. (Use GitHub usernames) (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+    default: '',
+  },
+  {
+    type: 'input',
+    name: 'test',
+    message: 'Provide walkthrough of required tests (if applicable):',
+  },
+]
 
 module.exports = questions
 
