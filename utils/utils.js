@@ -4,6 +4,45 @@ const consoleInputHelpers = {
   ifYouNotSure: 'If you are not sure, you can add it later in the README.md file',
 }
 
+const licenses = [
+  { name: 'Academic Free License v3.0', abbreviation: 'AFL-3.0' },
+  { name: 'Apache license 2.0', abbreviation: 'Apache-2.0' },
+  { name: 'Artistic license 2.0', abbreviation: 'Artistic-2.0' },
+  { name: 'Boost Software License 1.0', abbreviation: 'BSL-1.0' },
+  { name: "BSD 2-clause 'Simplified' license", abbreviation: 'BSD-2-Clause' },
+  { name: "BSD 3-clause 'New' or 'Revised' license", abbreviation: 'BSD-3-Clause' },
+  { name: 'BSD 3-clause Clear license', abbreviation: 'BSD-3-Clause-Clear' },
+  { name: "BSD 4-clause 'Original' or 'Old' license", abbreviation: 'BSD-4-Clause' },
+  { name: 'BSD Zero-Clause license', abbreviation: '0BSD' },
+  { name: 'Creative Commons license family', abbreviation: 'CC' },
+  { name: 'Creative Commons Zero v1.0 Universal', abbreviation: 'CC0-1.0' },
+  { name: 'Creative Commons Attribution 4.0', abbreviation: 'CC-BY-4.0' },
+  { name: 'Creative Commons Attribution ShareAlike 4.0', abbreviation: 'CC-BY-SA-4.0' },
+  { name: 'Do What The F*ck You Want To Public License', abbreviation: 'WTFPL' },
+  { name: 'Educational Community License v2.0', abbreviation: 'ECL-2.0' },
+  { name: 'Eclipse Public License 1.0', abbreviation: 'EPL-1.0' },
+  { name: 'Eclipse Public License 2.0', abbreviation: 'EPL-2.0' },
+  { name: 'European Union Public License 1.1', abbreviation: 'EUPL-1.1' },
+  { name: 'GNU Affero General Public License v3.0', abbreviation: 'AGPL-3.0' },
+  { name: 'GNU General Public License family', abbreviation: 'GPL' },
+  { name: 'GNU General Public License v2.0', abbreviation: 'GPL-2.0' },
+  { name: 'GNU General Public License v3.0', abbreviation: 'GPL-3.0' },
+  { name: 'GNU Lesser General Public License family', abbreviation: 'LGPL' },
+  { name: 'GNU Lesser General Public License v2.1', abbreviation: 'LGPL-2.1' },
+  { name: 'GNU Lesser General Public License v3.0', abbreviation: 'LGPL-3.0' },
+  { name: 'ISC', abbreviation: 'ISC' },
+  { name: 'LaTeX Project Public License v1.3c', abbreviation: 'LPPL-1.3c' },
+  { name: 'Microsoft Public License', abbreviation: 'MS-PL' },
+  { name: 'MIT', abbreviation: 'MIT' },
+  { name: 'Mozilla Public License 2.0', abbreviation: 'MPL-2.0' },
+  { name: 'Open Software License 3.0', abbreviation: 'OSL-3.0' },
+  { name: 'PostgreSQL License', abbreviation: 'PostgreSQL' },
+  { name: 'SIL Open Font License 1.1', abbreviation: 'OFL-1.1' },
+  { name: 'University of Illinois/NCSA Open Source License', abbreviation: 'NCSA' },
+  { name: 'The Unlicense', abbreviation: 'Unlicense' },
+  { name: 'zLib License', abbreviation: 'Zlib' },
+]
+
 // array of questions for user
 const questions = [
   {
