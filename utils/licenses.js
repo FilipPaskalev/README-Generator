@@ -1,8 +1,13 @@
+const mit = require('./utils/templates/mit');
+const apacheV2 = require('./utils/templates/apacheV2');
+const aflV3 = require('./utils/templates/aflV3');
+const artisticV2 = require('./utils/templates/artisticV2');
+
 const licenses = new Map([
   ['default', ['Default', 'No license']], // Set 'none' for the default choice
-  ['AFL-3.0', ['Academic Free License v3.0', 'Your description for AFL-3.0']],
-  ['Apache-2.0', ['Apache license 2.0', 'Your description for Apache-2.0']],
-  ['Artistic-2.0', ['Artistic license 2.0', 'Your description for Artistic-2.0']],
+  ['AFL-3.0', ['Academic Free License v3.0', aflV3]],
+  ['Apache-2.0', ['Apache license 2.0', apacheV2]],
+  ['Artistic-2.0', ['Artistic license 2.0', artisticV2]],
   ['BSL-1.0', ['Boost Software License 1.0', 'Your description for BSL-1.0']],
   ['BSD-2-Clause', ["BSD 2-clause 'Simplified' license", 'Your description for BSD-2-Clause']],
   [
@@ -37,7 +42,7 @@ const licenses = new Map([
   ['ISC', ['ISC', 'Your description for ISC']],
   ['LPPL-1.3c', ['LaTeX Project Public License v1.3c', 'Your description for LPPL-1.3c']],
   ['MS-PL', ['Microsoft Public License', 'Your description for MS-PL']],
-  ['MIT', ['MIT', 'Your description for MIT']],
+  ['MIT', ['MIT', mit]],
   ['MPL-2.0', ['Mozilla Public License 2.0', 'Your description for MPL-2.0']],
   ['OSL-3.0', ['Open Software License 3.0', 'Your description for OSL-3.0']],
   ['PostgreSQL', ['PostgreSQL License', 'Your description for PostgreSQL']],
@@ -45,6 +50,6 @@ const licenses = new Map([
   ['NCSA', ['University of Illinois/NCSA Open Source License', 'Your description for NCSA']],
   ['Unlicense', ['The Unlicense', 'Your description for Unlicense']],
   ['Zlib', ['zLib License', 'Your description for Zlib']],
-])
+]);
 
-module.exports = licenses
+module.exports = licenses;
