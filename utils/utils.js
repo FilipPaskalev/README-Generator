@@ -1,5 +1,5 @@
 const consoleInputHelpers = {
-  pleaseEnter: 'Please enter the',
+  pleaseEnter: 'Please enter',
   ifYouDoNotHaveAny: "If you don't have any, just press enter",
   ifYouNotSure: 'If you are not sure, you can add it later in the README.md file',
 }
@@ -47,22 +47,37 @@ const licenses = [
 const questions = [
   {
     type: 'input',
-    name: 'projectTitle',
-    message: `${consoleInputHelpers.pleaseEnter} title of your project:`,
+    name: 'title',
+    message: `${consoleInputHelpers.pleaseEnter} the title of your project:`,
   },
   {
     type: 'input',
-    name: 'projectDescription',
+    name: 'description',
     message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
   },
   {
     type: 'input',
-    name: 'projectScreenshot',
+    name: 'tableOfContents',
+    message: `Select is table of contents is required for your project (${consoleInputHelpers.ifYouNotSure}):`,
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: `${consoleInputHelpers.pleaseEnter} installation instructions for your project:`,
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: `${consoleInputHelpers.pleaseEnter} instructions and examples for use:`,
+  },
+  {
+    type: 'input',
+    name: 'screenshot',
     message: `${consoleInputHelpers.pleaseEnter} relative path to the image you want to use as the screenshot for your project (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
   },
   {
     type: 'input',
-    name: 'deployedProjectLink',
+    name: 'deployedUrl',
     message: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
   },
   {
@@ -95,6 +110,18 @@ const questions = [
     type: 'input',
     name: 'authorEmail',
     message: 'Provide a valid email address for users to reach you for questions:',
+    default: () => {},
+    validate: function (authorEmail) {
+      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail)
+
+      if (valid) {
+        console.log('Thank you for providing a valid email address.')
+        return true
+      } else {
+        console.log('Please enter a valid email address.')
+        return false
+      }
+    },
   },
   {
     type: 'input',
@@ -107,13 +134,14 @@ const questions = [
     name: 'test',
     message: 'Provide walkthrough of required tests (if applicable):',
   },
+  {
+    type: 'questions',
+    name: 'questions',
+    message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions:`,
+  },
 ]
 
 module.exports = questions
-
-// # <Your-Project-Title>
-
-// ## Description
 
 // Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
