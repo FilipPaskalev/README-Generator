@@ -47,6 +47,19 @@ const markdownElements = {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
+  highlight: {
+    getOpenTagMD: () => '==',
+    getCloseTagMD: () => '==',
+    getOpenTagHTML: () => '<mark>',
+    getCloseTagHTML: () => '</mark>',
+    setText: (text) => text,
+    getResultMD: function (text) {
+      return `${this.getOpenTagMD()} ${this.setText(text)} ${this.getCloseTagMD()}`;
+    },
+    getResultHTML: function (text) {
+      return `${this.getOpenTagHTML()} ${this.setText(text)} ${this.getCloseTagHTML()}`;
+    },
+  },
   italic: {
     getOpenTag: () => '*',
     getCloseTag: () => '*',
