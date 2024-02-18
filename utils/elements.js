@@ -1,121 +1,140 @@
-const markdownElements = new Map([
-  [
-    'heading1',
-    {
-      element: { openTag: '# ', closeTag: '' },
-      example: '# Heading 1',
+const markdownElements = {
+  h1: {
+    getOpenTag: () => '# ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'heading2',
-    {
-      element: { openTag: '## ', closeTag: '' },
-      example: '## Heading 2',
+  },
+  h2: {
+    getOpenTag: () => '## ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'heading3',
-    {
-      element: { openTag: '### ', closeTag: '' },
-      example: '### Heading 3',
+  },
+  h3: {
+    getOpenTag: () => '### ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'heading4',
-    {
-      element: { openTag: '#### ', closeTag: '' },
-      example: '#### Heading 4',
+  },
+  h4: {
+    getOpenTag: () => '#### ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'heading5',
-    {
-      element: { openTag: '##### ', closeTag: '' },
-      example: '##### Heading 5',
+  },
+  h5: {
+    getOpenTag: () => '##### ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'heading6',
-    {
-      element: { openTag: '###### ', closeTag: '' },
-      example: '###### Heading 6',
+  },
+  h6: {
+    getOpenTag: () => '###### ',
+    getCloseTag: () => '',
+    setText: (title) => title,
+    getResult: function (title) {
+      return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'italic',
-    {
-      element: { openTag: '*', closeTag: '*' },
-      example: '*Italic text*',
+  },
+  italic: {
+    getOpenTag: () => '*',
+    getCloseTag: () => '*',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'bold',
-    {
-      element: { openTag: '**', closeTag: '**' },
-      example: '**Bold text**',
+  },
+  bold: {
+    getOpenTag: () => '**',
+    getCloseTag: () => '**',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'boldAndItalic',
-    {
-      element: { openTag: '***', closeTag: '***' },
-      example: '***Bold and italic text***',
+  },
+  boldAndItalic: {
+    getOpenTag: () => '***',
+    getCloseTag: () => '***',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'listItem1',
-    {
-      element: { openTag: '- ', closeTag: '' },
-      example: '- List item 1',
+  },
+  listItem: {
+    getOpenTag: () => '- ',
+    getCloseTag: () => '',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'listItem2',
-    {
-      element: { openTag: '- ', closeTag: '' },
-      example: '- List item 2',
+  },
+  nestedListItem: {
+    getOpenTag: () => '   - ',
+    getCloseTag: () => '',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'nestedListItem',
-    {
-      element: { openTag: '   - ', closeTag: '' },
-      example: '   - Nested list item',
+  },
+  blockquote: {
+    getOpenTag: () => '> ',
+    getCloseTag: () => '',
+    setText: (text) => text,
+    getResult: function (text) {
+      return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'blockquote',
-    {
-      element: { openTag: '> ', closeTag: '' },
-      example: '> Blockquote',
+  },
+  code: {
+    getOpenTag: () => '```',
+    getCloseTag: () => '```',
+    setText: (code) => code,
+    getResult: function (code) {
+      return `${this.getOpenTag()} ${this.setText(code)} ${this.getCloseTag()}`;
     },
-  ],
-  [
-    'code',
-    {
-      element: { openTag: '```', closeTag: '```' },
-      example: '```code```',
+  },
+  link: {
+    getOpenTag: () => '[',
+    getCloseTag: (url) => `](${url})`,
+    setText: (linkText, url) => [linkText, url],
+    setUrl: (url) => url,
+    setAltText: (altText) => altText,
+    getResult: function (linkText, url) {
+      const urlWithTags = this.getCloseTag(this.setUrl(url));
+
+      return `${this.getOpenTag()} ${this.setText(linkText, this.setUrl(url))} ${urlWithTags}`;
     },
-  ],
-  [
-    'link',
-    {
-      element: { openTag: '[', closeTag: '](url)' },
-      example: '[Link text](url)',
+  },
+  image: {
+    getOpenTag: () => '![',
+    getCloseTag: (url) => `](${url})`,
+    setText: (altText, url) => [altText, url],
+    setUrl: (url) => url,
+    setAltText: (altText) => altText,
+    getResult: function (altText, url) {
+      const urlWithTags = this.getCloseTag(this.setUrl(url));
+
+      return `${this.getOpenTag()}${this.setText(this.setAltText(altText), this.setUrl(url))}${urlWithTags}`;
     },
-  ],
-  [
-    'image',
-    {
-      element: { openTag: '![', closeTag: '](url)' },
-      example: '![Alt text](url)',
+  },
+  horizontalRule: {
+    getOpenTag: () => '---',
+    getCloseTag: () => '',
+    setText: () => '',
+    getResult: function () {
+      return `${this.getOpenTag()}${this.setText()}${this.getCloseTag()}`;
     },
-  ],
-  [
-    'horizontalRule',
-    {
-      element: { openTag: '---', closeTag: '' },
-      example: '---',
-    },
-  ],
-]);
+  },
+};
+
+module.exports = markdownElements;
