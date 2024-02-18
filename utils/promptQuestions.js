@@ -1,4 +1,5 @@
 import consoleInputHelpers from './utils.js';
+import LICENSES from './licenses.js';
 
 const defaultValues = {
   title: `Title`,
@@ -107,16 +108,12 @@ const promptQuestions = [
       return deployedUrl === questionsInfo.deployedUrl ? '' : deployedUrl;
     },
   },
-  // {
-  //   type: 'checkbox',
-  //   name: 'license',
-  //   message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
-  //   default: ['none'],
-  //   choices: (questions.find((question) => question.name === 'license').choices = [
-  //     ...getLicenseAbbreviations(),
-  //     'none',
-  //   ]),
-  // },
+  {
+    type: 'checkbox',
+    name: 'license',
+    message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
+    choices: Object.keys(LICENSES).map((key) => LICENSES[key].abbreviation),
+  },
   // {
   //   type: 'input',
   //   name: 'dependencies',
@@ -171,12 +168,6 @@ const promptQuestions = [
   //   message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
   // },
 ];
-
-// To add a screenshot, use `res/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-//     ```md
-//     ![alt text](assets/images/screenshot.png)
-//     ```
 
 // ## Credits
 
