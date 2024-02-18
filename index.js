@@ -15,11 +15,16 @@ function init() {
   const fileName = 'README.md';
   const outputPath = `./dist/${fileName}`;
 
-  console.log('Welcome to the Professional README.md Generator');
+  console.log(`
+  Welcome to the Professional README.md Generator
+  ==============================================
+  Please answer the following questions to generate your README.md file.
+  `);
 
   inquirer.prompt(questions).then((responses) => {
-    console.log('Creating Professional README.md File...');
+    console.log('Generating Professional README.md File...');
     writeToFile(outputPath, generateMarkdown({ ...responses }));
+    console.log(`Your README.md file has been successfully generated at ${outputPath}`);
   });
 }
 
