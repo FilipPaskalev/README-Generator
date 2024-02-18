@@ -1,4 +1,4 @@
-export default apacheV2 = (year, copyrightOwner) => {
+const apacheV2 = (year, copyrightOwner) => {
   const currentYear = year ? year : new Date().getFullYear();
   const nameOfCopyrightOwner = copyrightOwner ? copyrightOwner : '[name of copyright owner]';
 
@@ -204,3 +204,5 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.`;
 };
+
+export default apacheV2;

@@ -1,36 +1,37 @@
-import MIT from './utils/templates/mit.js';
-import APACHE from './utils/templates/apacheV2.js';
-import AFL from './utils/templates/aflV3.js';
-import ARTISTIC from './utils/templates/artisticV2.js';
+import AFL_TEMPLATE from './templates/aflV3.js';
+import APACHE_TEMPLATE from './templates/apacheV2.js';
+import ARTISTIC_TEMPLATE from './templates/artisticV2.js';
+import MIT_TEMPLATE from './templates/mit.js';
 
-export default licenses = {
-  default: {
-    name: 'Default',
-    description: 'No license',
-    template: 'none',
+const licenses = {
+  unlicensed: {
+    name: 'unlicensed',
+    abbreviation: 'unlicensed',
+    template: 'This project is unlicensed and is intended to be used as a reference or template.',
   },
-  'AFL-3.0': {
+  afl: {
     name: 'Academic Free License v3.0',
     abbreviation: 'AFL-3.0',
-    template: AFL,
+    template: AFL_TEMPLATE,
   },
-  'Apache-2.0': {
+  apache: {
     name: 'Apache license 2.0',
     abbreviation: 'Apache-2.0',
-    template: APACHE,
+    template: APACHE_TEMPLATE,
   },
-  'Artistic-2.0': {
+  artistic: {
     name: 'Artistic license 2.0',
     abbreviation: 'Artistic-2.0',
-    template: ARTISTIC,
+    template: ARTISTIC_TEMPLATE,
   },
-  MIT: {
+  mit: {
     name: 'Massachusetts Institute of Technology',
     abbreviation: 'MIT',
-    template: MIT,
+    template: MIT_TEMPLATE,
   },
 };
 
+// TODO add templates for all licenses
 // export default licenses = new Map([
 //   ['BSL-1.0', ['Boost Software License 1.0', 'Your description for BSL-1.0']],
 //   ['BSD-2-Clause', ["BSD 2-clause 'Simplified' license", 'Your description for BSD-2-Clause']],
@@ -74,3 +75,5 @@ export default licenses = {
 //   ['Unlicense', ['The Unlicense', 'Your description for Unlicense']],
 //   ['Zlib', ['zLib License', 'Your description for Zlib']],
 // ]);
+
+export default licenses;

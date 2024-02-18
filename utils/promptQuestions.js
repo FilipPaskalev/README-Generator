@@ -1,5 +1,24 @@
-import consoleInputHelpers from './utils.js';
+import HELPERS from './utils.js';
 import LICENSES from './licenses.js';
+
+const promptMessages = {
+  title: 'Title:',
+  description: 'Description:',
+  toc: 'Table of Contents:',
+  installation: 'Installation:',
+  usage: 'Usage:',
+  projectCover: 'Project cover:',
+  deployedUrl: 'Deployed URL:',
+  license: 'License:',
+  dependencies: 'Dependencies:',
+  features: 'Features:',
+  languagesAndTechnologies: 'Languages and Technologies:',
+  gitHubUsername: 'GitHub username:',
+  authorEmail: "Author's email:",
+  contributors: 'Contributors:',
+  test: 'Tests:',
+  questions: 'Questions:',
+};
 
 const defaultValues = {
   title: `Title`,
@@ -9,152 +28,191 @@ const defaultValues = {
   usage: 'Provide instructions and examples for use. Include screenshots as needed.',
   projectCover: './res/images/project-cover-1280x640.png',
   deployedUrl: '',
+  license: 'unlicensed',
 };
 
-const questionsInfo = {
-  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${consoleInputHelpers.ifYouNotSure} default title will be "${defaultValues.title}". ${consoleInputHelpers.pressEnter}`,
-  description: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences. ${consoleInputHelpers.ifYouNotSure}. Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+const shadowMessages = {
+  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${HELPERS.ifYouNotSure} default title will be "${defaultValues.title}". ${HELPERS.pressEnter}`,
+  description: `${HELPERS.pleaseEnter} purpose and functionality of this project in 2-3 sentences. ${HELPERS.ifYouNotSure}. Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
   - What was your motivation?
   - Why did you build this project? Note: the answer is not "Because it was a homework assignment."
   - What problem does it solve?
   - What did you learn?
-  ${consoleInputHelpers.pressEnter}`,
+  ${HELPERS.pressEnter}`,
   toc: `If your README is long, add a table of contents to make it easy for users to find what they need.
   - [Installation](#installation)
   - [Usage](#usage)
   - [Credits](#credits)
   - [License](#license)
   ... and so on
-  ${consoleInputHelpers.ifYouNotSure}. Default value will be NO. ${consoleInputHelpers.pressEnter}`,
-  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running. ${consoleInputHelpers.ifYouNotSure}. Default value will be YES. ${consoleInputHelpers.pressEnter}`,
-  usage: `Provide instructions and examples for use. Include screenshots as needed. ${consoleInputHelpers.ifYouNotSure}. Default value will be YES. ${consoleInputHelpers.pressEnter}`,
-  projectCover: `${consoleInputHelpers.pleaseEnter} relative filepath to the project cover image, ${consoleInputHelpers.ifApplicable}. Default path is './res/images/project-cover-1280x640.png'. 
+  ${HELPERS.ifYouNotSure}. Default value will be NO. ${HELPERS.pressEnter}`,
+  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running. ${HELPERS.ifYouNotSure}. Default value will be YES. ${HELPERS.pressEnter}`,
+  usage: `Provide instructions and examples for use. Include screenshots as needed. ${HELPERS.ifYouNotSure}. Default value will be YES. ${HELPERS.pressEnter}`,
+  projectCover: `${HELPERS.pleaseEnter} relative filepath to the project cover image, ${HELPERS.ifApplicable}. Default path is './res/images/project-cover-1280x640.png'. 
   Hint:
   To add a screenshot, use "res/images" folder in repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
   ![alt text](res/images/screenshot.png)
-  ${consoleInputHelpers.pressEnter}`,
-  deployedUrl: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. ${consoleInputHelpers.ifYouDoNotHaveAny}. ${consoleInputHelpers.pressEnter}`,
+  ${HELPERS.pressEnter}`,
+  deployedUrl: `${HELPERS.pleaseEnter} URL where a user can access your deployed application. ${HELPERS.ifYouDoNotHaveAny}. ${HELPERS.pressEnter}`,
+  license: `Please select a license applicable to this project. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
+  dependencies: `List any project dependencies here ${HELPERS.ifYouDoNotHaveAny}. ${HELPERS.pressEnter}`,
+  features: `List some cool features about this project here ${HELPERS.ifApplicable}. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
+  languagesAndTechnologies: `${HELPERS.pleaseEnter} languages or technologies associated with this project. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
+  gitHubUsername: 'Write your GitHub username here:',
+  authorEmail: 'Provide a valid email address for users to reach you for questions:',
 };
+
+const titleFilter = (title) => {
+  return title === shadowMessages.title ? defaultValues.title : title;
+};
+
+const descriptionFilter = (description) => {
+  return description === shadowMessages.description ? defaultValues.description : description;
+};
+
+const tocFilter = (toc) => {
+  return toc === shadowMessages.toc ? defaultValues.toc : true;
+};
+
+const installationFilter = (installation) => {
+  return installation === shadowMessages.installation ? defaultValues.installation : '';
+};
+
+const usageFilter = (usage) => {
+  return usage === shadowMessages.usage ? '' : defaultValues.usage;
+};
+
+const projectCoverFilter = (projectCover) => {
+  return projectCover === shadowMessages.projectCover ? defaultValues.projectCover : projectCover;
+};
+
+const deployedUrlFilter = (deployedUrl) => {
+  return deployedUrl === shadowMessages.deployedUrl ? '' : deployedUrl;
+};
+
+const licenseFilter = (license) => {
+  return license === shadowMessages.license ? defaultValues.license : license;
+};
+
+const gitHubUsernameFilter = (gitHubUsername) => {
+  return gitHubUsername === shadowMessages.gitHubUsername ? '' : gitHubUsername;
+};
+
+const validateGitHubUsername = (username) => {
+  const usernameRegex = /^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38}$/;
+  return usernameRegex.test(username) ? true : 'Please enter a valid GitHub username.';
+};
+
+const validateAuthorEmail = (authorEmail) => {
+  valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
+
+  if (valid) {
+    console.log('Thank you for providing a valid email address.');
+    return true;
+  } else {
+    console.log('Please enter a valid email address.');
+    return false;
+  }
+};
+
+const licenseChoiceList = () => Object.values(LICENSES).map((license) => license.abbreviation);
 
 // array of questions for user
 const promptQuestions = [
   {
     type: 'input',
     name: 'title',
-    message: 'Title:',
-    default: questionsInfo.title,
-    filter: (title) => {
-      return title === questionsInfo.title ? defaultValues.title : title;
-    },
+    message: promptMessages.title,
+    default: shadowMessages.title,
+    filter: titleFilter,
   },
   {
     type: 'input',
     name: 'description',
-    message: 'Description:',
-    default: `Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-      - What was your motivation?
-      - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-      - What problem does it solve?
-      - What did you learn?`,
-    default: questionsInfo.description,
-    filter: (description) => {
-      return description === questionsInfo.description ? defaultValues.description : description;
-    },
+    message: promptMessages.description,
+    default: shadowMessages.description,
+    filter: descriptionFilter,
   },
   {
     type: 'input',
     name: 'toc',
-    message: `TOC:`,
-    default: questionsInfo.toc,
-    filter: (toc) => {
-      return toc === questionsInfo.toc ? defaultValues.toc : true;
-    },
+    message: promptMessages.toc,
+    default: shadowMessages.toc,
+    filter: tocFilter,
   },
   {
     type: 'input',
     name: 'installation',
-    message: `Installation section:`,
-    default: questionsInfo.installation,
-    filter: (installation) => {
-      return installation === questionsInfo.installation ? defaultValues.installation : '';
-    },
+    message: promptMessages.installation,
+    default: shadowMessages.installation,
+    filter: installationFilter,
   },
   {
     type: 'input',
     name: 'usage',
-    message: `Usage section:`,
-    default: questionsInfo.installation,
-    filter: (usage) => {
-      return usage === questionsInfo.usage ? '' : defaultValues.usage;
-    },
+    message: promptMessages.usage,
+    default: shadowMessages.installation,
+    filter: usageFilter,
   },
   {
     type: 'input',
     name: 'projectCover',
-    message: `Project cover:`,
-    default: questionsInfo.projectCover,
-    filter: (projectCover) => {
-      return projectCover === questionsInfo.projectCover
-        ? defaultValues.projectCover
-        : projectCover;
-    },
+    message: promptMessages.projectCover,
+    default: shadowMessages.projectCover,
+    filter: projectCoverFilter,
   },
   {
     type: 'input',
     name: 'deployedUrl',
-    message: `Deployed URL:`,
-    default: questionsInfo.deployedUrl,
-    filter: (deployedUrl) => {
-      return deployedUrl === questionsInfo.deployedUrl ? '' : deployedUrl;
-    },
+    message: promptMessages.deployedUrl,
+    default: shadowMessages.deployedUrl,
+    filter: deployedUrlFilter,
   },
   {
-    type: 'checkbox',
+    type: 'list',
     name: 'license',
-    message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
-    choices: Object.keys(LICENSES).map((key) => LICENSES[key].abbreviation),
+    message: promptMessages.license,
+    default: shadowMessages.license,
+    choices: licenseChoiceList,
+    filter: licenseFilter,
   },
-  // {
-  //   type: 'input',
-  //   name: 'dependencies',
-  //   message: `List any project dependencies here (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'features',
-  //   message: 'List some cool features about this project here (if any):',
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'languagesAndTechnologies',
-  //   message: `${consoleInputHelpers.pleaseEnter} languages or technologies associated with this project:`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'authorName',
-  //   message: 'Write your GitHub username here:',
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'authorEmail',
-  //   message: 'Provide a valid email address for users to reach you for questions:',
-  //   default: () => {},
-  //   validate: function (authorEmail) {
-  //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
-
-  //     if (valid) {
-  //       console.log('Thank you for providing a valid email address.');
-  //       return true;
-  //     } else {
-  //       console.log('Please enter a valid email address.');
-  //       return false;
-  //     }
-  //   },
-  // },
+  {
+    type: 'input',
+    name: 'dependencies',
+    message: promptMessages.dependencies,
+    default: shadowMessages.dependencies,
+  },
+  {
+    type: 'input',
+    name: 'features',
+    message: promptMessages.features,
+    default: shadowMessages.features,
+  },
+  {
+    type: 'input',
+    name: 'languagesAndTechnologies',
+    message: promptMessages.languagesAndTechnologies,
+    defaultValues: shadowMessages.languagesAndTechnologies,
+  },
+  {
+    type: 'input',
+    name: 'gitHubUsername',
+    message: promptMessages.gitHubUsername,
+    default: shadowMessages.gitHubUsername,
+    validate: validateGitHubUsername,
+    filter: gitHubUsernameFilter,
+  },
+  {
+    type: 'input',
+    name: 'authorEmail',
+    message: promptMessages.authorEmail,
+    default: shadowMessages.authorEmail,
+    validate: validateAuthorEmail,
+  },
   // {
   //   type: 'input',
   //   name: 'contributors',
-  //   message: `Please list any contributors. (Use GitHub usernames) (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  //   message: `Please list any contributors. (Use GitHub usernames) (${HELPERS.ifYouDoNotHaveAny}):`,
   //   default: '',
   // },
   // {
@@ -165,7 +223,7 @@ const promptQuestions = [
   // {
   //   type: 'questions',
   //   name: 'questions',
-  //   message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
+  //   message: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}:`,
   // },
 ];
 

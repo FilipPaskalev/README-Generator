@@ -1,5 +1,5 @@
 // todo get dynamic value of year and name
-export default mit = (year, name) => {
+const mit = (year, name) => {
   const currentYear = year ? year : new Date().getFullYear();
   const currentName = name ? name : '[Your name]';
 
@@ -25,3 +25,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
 };
+
+export default mit;
