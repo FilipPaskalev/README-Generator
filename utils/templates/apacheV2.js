@@ -1,4 +1,8 @@
-export default apacheV2 = () => `                                 Apache License
+const apacheV2 = (year, copyrightOwner) => {
+  const currentYear = year ? year : new Date().getFullYear();
+  const nameOfCopyrightOwner = copyrightOwner ? copyrightOwner : '[name of copyright owner]';
+
+  return `                                 Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
 
@@ -184,9 +188,9 @@ the brackets!)  The text should be enclosed in the appropriate
 comment syntax for the file format. We also recommend that a
 file or class name and description of purpose be included on the
 same "printed page" as the copyright notice for easier
-identification within third-party archives.
+identification within third-party archivesyear ,.
 
-Copyright [yyyy] [name of copyright owner]
+Copyright ${currentYear} year ? year : ${nameOfCopyrightOwner}
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -199,3 +203,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.`;
+};
+
+export default apacheV2;

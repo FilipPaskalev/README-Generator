@@ -1,7 +1,11 @@
-export default mit = (name, year) => {
-  `MIT License
+// todo get dynamic value of year and name
+const mit = (year, name) => {
+  const currentYear = year ? year : new Date().getFullYear();
+  const currentName = name ? name : '[Your name]';
 
-Copyright (c) ${year} ${name}
+  return `MIT License
+
+Copyright (c) ${currentYear} ${currentName}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +23,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-`;
+SOFTWARE.`;
 };
+
+export default mit;
