@@ -98,21 +98,18 @@ const gitHubUsernameFilter = (gitHubUsername) => {
   return gitHubUsername === shadowMessages.gitHubUsername ? '' : gitHubUsername;
 };
 
+const authorEmailFilter = (authorEmail) => {
+  return authorEmail === shadowMessages.authorEmail ? '' : authorEmail;
+};
+
 const validateGitHubUsername = (username) => {
   const usernameRegex = /^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38}$/;
   return usernameRegex.test(username) ? true : 'Please enter a valid GitHub username.';
 };
 
 const validateAuthorEmail = (authorEmail) => {
-  valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
-
-  if (valid) {
-    console.log('Thank you for providing a valid email address.');
-    return true;
-  } else {
-    console.log('Please enter a valid email address.');
-    return false;
-  }
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return emailRegex.test(authorEmail) ? true : 'Please enter a valid email address.';
 };
 
 const licenseChoiceList = () => Object.values(LICENSES).map((license) => license.abbreviation);
@@ -208,13 +205,14 @@ const promptQuestions = [
     message: promptMessages.authorEmail,
     default: shadowMessages.authorEmail,
     validate: validateAuthorEmail,
+    filter: authorEmailFilter,
   },
-  // {
-  //   type: 'input',
-  //   name: 'contributors',
-  //   message: `Please list any contributors. (Use GitHub usernames) (${HELPERS.ifYouDoNotHaveAny}):`,
-  //   default: '',
-  // },
+  {
+    type: 'input',
+    name: 'contributors',
+    message: `Please list any contributors. (Use GitHub usernames) (${HELPERS.ifYouDoNotHaveAny}):`,
+    default: '',
+  },
   // {
   //   type: 'input',
   //   name: 'test',
