@@ -1,17 +1,17 @@
 import consoleInputHelpers from './utils.js';
 
 // array of questions for user
-const questions = [
+const promptQuestions = [
   {
     type: 'input',
     name: 'title',
     message: `${consoleInputHelpers.pleaseEnter} the title of your project:`,
   },
-  // {
-  //   type: 'input',
-  //   name: 'description',
-  //   message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
-  // },
+  {
+    type: 'input',
+    name: 'description',
+    message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
+  },
   // {
   //   type: 'input',
   //   name: 'tableOfContents',
@@ -166,4 +166,4 @@ const questions = [
 
 // Go the extra mile and write tests for your application. Then provide examples on how to run them here.
 
-export default questions;
+export default promptQuestions;

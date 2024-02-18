@@ -1,3 +1,4 @@
+// TODO add more elements form https://markdownguide.offshoot.io/extended-syntax/
 const markdownElements = {
   h1: {
     getOpenTag: () => '# ',
