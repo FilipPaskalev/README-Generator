@@ -1,14 +1,39 @@
-// const MD = require('../utils/elements');
-import markdownElements from '../utils/elements.js';
+import MD from '../utils/elements.js';
 
-// Purpose: This file will generate the markdown for the README file
+function renderProjectTitle(title) {
+  return MD.h1.getResult(title);
+}
+
+function renderBadges(badges) {}
+
+function renderProjectCover(projectCover) {}
+
+function renderTOC(toc) {
+  return `${MD.h2.getResult('Table of Contents')}`;
+}
+
+function renderDescriptionSection(description) {
+  return MD.text.getResult(description);
+}
+
+function renderInstallationSection(installation) {
+  return `${MD.h2.getResult('Installation')}
+  ${installation}`;
+}
+
+function renderUsageSection(usage) {
+  return `${MD.h2.getResult('Usage')}
+  ${usage}`;
+}
+
 // function to generate markdown for README
-export default function generateMarkdown(data) {
-  return `${markdownElements.h1.getResult(data.title)}
-
-${markdownElements.h2.getResult('Description')}
-
-${data.description}
-
+function generateMarkdown(data) {
+  return `${renderProjectTitle(data.title)}
+${renderDescriptionSection(data.description)}
+${renderTOC(data.toc)}
+${renderInstallationSection(data.installation)}
+${renderUsageSection(data.usage)}
 `;
 }
+
+export default generateMarkdown;

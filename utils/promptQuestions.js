@@ -3,16 +3,36 @@ import consoleInputHelpers from './utils.js';
 const defaultValues = {
   title: `Title`,
   description: `Insert a concise overview of your project, including its purpose, goals, and key features. Describe the problem it aims to solve or the need it addresses. You can also include information about the target audience and potential benefits.`,
+  toc: false,
+  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.`,
+  usage: 'Provide instructions and examples for use. Include screenshots as needed.',
+  projectCover: './res/images/project-cover-1280x640.png',
+  deployedUrl: '',
 };
 
 const questionsInfo = {
-  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations.
-  (${consoleInputHelpers.ifYouNotSure} default title will be "${defaultValues.title}"):`,
-  description: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}). Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${consoleInputHelpers.ifYouNotSure} default title will be "${defaultValues.title}". ${consoleInputHelpers.pressEnter}`,
+  description: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences. ${consoleInputHelpers.ifYouNotSure}. Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
   - What was your motivation?
-  - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+  - Why did you build this project? Note: the answer is not "Because it was a homework assignment."
   - What problem does it solve?
-  - What did you learn?`,
+  - What did you learn?
+  ${consoleInputHelpers.pressEnter}`,
+  toc: `If your README is long, add a table of contents to make it easy for users to find what they need.
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Credits](#credits)
+  - [License](#license)
+  ... and so on
+  ${consoleInputHelpers.ifYouNotSure}. Default value will be NO. ${consoleInputHelpers.pressEnter}`,
+  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running. ${consoleInputHelpers.ifYouNotSure}. Default value will be YES. ${consoleInputHelpers.pressEnter}`,
+  usage: `Provide instructions and examples for use. Include screenshots as needed. ${consoleInputHelpers.ifYouNotSure}. Default value will be YES. ${consoleInputHelpers.pressEnter}`,
+  projectCover: `${consoleInputHelpers.pleaseEnter} relative filepath to the project cover image, ${consoleInputHelpers.ifApplicable}. Default path is './res/images/project-cover-1280x640.png'. 
+  Hint:
+  To add a screenshot, use "res/images" folder in repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+  ![alt text](res/images/screenshot.png)
+  ${consoleInputHelpers.pressEnter}`,
+  deployedUrl: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. ${consoleInputHelpers.ifYouDoNotHaveAny}. ${consoleInputHelpers.pressEnter}`,
 };
 
 // array of questions for user
@@ -29,7 +49,7 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'description',
-    message: 'Description',
+    message: 'Description:',
     default: `Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
       - What was your motivation?
       - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
@@ -40,31 +60,53 @@ const promptQuestions = [
       return description === questionsInfo.description ? defaultValues.description : description;
     },
   },
-  // {
-  //   type: 'input',
-  //   name: 'tableOfContents',
-  //   message: `Select is table of contents is required for your project (${consoleInputHelpers.ifYouNotSure}):`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'installation',
-  //   message: `${consoleInputHelpers.pleaseEnter} installation instructions for your project:`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'usage',
-  //   message: `${consoleInputHelpers.pleaseEnter} instructions and examples for use:`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'screenshot',
-  //   message: `${consoleInputHelpers.pleaseEnter} relative path to the image you want to use as the screenshot for your project (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  // },
-  // {
-  //   type: 'input',
-  //   name: 'deployedUrl',
-  //   message: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  // },
+  {
+    type: 'input',
+    name: 'toc',
+    message: `TOC:`,
+    default: questionsInfo.toc,
+    filter: (toc) => {
+      return toc === questionsInfo.toc ? defaultValues.toc : true;
+    },
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: `Installation section:`,
+    default: questionsInfo.installation,
+    filter: (installation) => {
+      return installation === questionsInfo.installation ? defaultValues.installation : '';
+    },
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: `Usage section:`,
+    default: questionsInfo.installation,
+    filter: (usage) => {
+      return usage === questionsInfo.usage ? '' : defaultValues.usage;
+    },
+  },
+  {
+    type: 'input',
+    name: 'projectCover',
+    message: `Project cover:`,
+    default: questionsInfo.projectCover,
+    filter: (projectCover) => {
+      return projectCover === questionsInfo.projectCover
+        ? defaultValues.projectCover
+        : projectCover;
+    },
+  },
+  {
+    type: 'input',
+    name: 'deployedUrl',
+    message: `Deployed URL:`,
+    default: questionsInfo.deployedUrl,
+    filter: (deployedUrl) => {
+      return deployedUrl === questionsInfo.deployedUrl ? '' : deployedUrl;
+    },
+  },
   // {
   //   type: 'checkbox',
   //   name: 'license',
@@ -130,24 +172,7 @@ const promptQuestions = [
   // },
 ];
 
-// ## Table of Contents (Optional)
-
-// If your README is long, add a table of contents to make it easy for users to find what they need.
-
-// - [Installation](#installation)
-// - [Usage](#usage)
-// - [Credits](#credits)
-// - [License](#license)
-
-// ## Installation
-
-// What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
-
-// ## Usage
-
-// Provide instructions and examples for use. Include screenshots as needed.
-
-// To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+// To add a screenshot, use `res/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
 //     ```md
 //     ![alt text](assets/images/screenshot.png)

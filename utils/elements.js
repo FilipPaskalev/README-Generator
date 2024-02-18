@@ -149,6 +149,12 @@ const markdownElements = {
       return `${this.getOpenTag()}${this.setText()}${this.getCloseTag()}`;
     },
   },
+  text: {
+    setText: (text) => text,
+    getResult: function (text) {
+      return this.setText(text);
+    },
+  },
 };
 
 export default markdownElements;
