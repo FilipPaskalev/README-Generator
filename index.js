@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 import generateMarkdown from './scripts/generateMarkdown.js';
-import questions from './utils/questions.js';
+import promptQuestions from './utils/promptQuestions.js';
 
 // function to write README file
 function writeToFile(fileName, data) {
@@ -21,9 +21,9 @@ function init() {
   Please answer the following questions to generate your README.md file.
   `);
 
-  inquirer.prompt(questions).then((responses) => {
+  inquirer.prompt(promptQuestions).then((userResponse) => {
     console.log('Generating Professional README.md File...');
-    writeToFile(outputPath, generateMarkdown({ ...responses }));
+    writeToFile(outputPath, generateMarkdown({ ...userResponse }));
     console.log(`Your README.md file has been successfully generated at ${outputPath}`);
   });
 }
