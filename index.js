@@ -7,7 +7,10 @@ import promptQuestions from './utils/promptQuestions.js';
 
 // function to write README file
 function writeToFile(fileName, data) {
-  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+  return fs.writeFileSync(
+    path.join(process.cwd(), fileName),
+    data
+  );
 }
 
 // function to initialize program
@@ -17,14 +20,22 @@ function init() {
 
   console.log(`
   Welcome to the Professional README.md Generator
-  ==============================================
-  Please answer the following questions to generate your README.md file.
+  ===================================================
+  Please answer the following questions to 
+  generate your README.md file.
   `);
 
   inquirer.prompt(promptQuestions).then((userResponse) => {
-    console.log('Generating Professional README.md File...');
-    writeToFile(outputPath, generateMarkdown({ ...userResponse }));
-    console.log(`Your README.md file has been successfully generated at ${outputPath}`);
+    console.log(
+      'Generating Professional README.md File...'
+    );
+    writeToFile(
+      outputPath,
+      generateMarkdown({ ...userResponse })
+    );
+    console.log(
+      `Your README.md file has been successfully generated at ${outputPath}`
+    );
   });
 }
 

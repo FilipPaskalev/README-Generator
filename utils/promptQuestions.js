@@ -1,16 +1,44 @@
 import consoleInputHelpers from './utils.js';
 
+const defaultValues = {
+  title: `Title`,
+  description: `Insert a concise overview of your project, including its purpose, goals, and key features. Describe the problem it aims to solve or the need it addresses. You can also include information about the target audience and potential benefits.`,
+};
+
+const questionsInfo = {
+  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations.
+  (${consoleInputHelpers.ifYouNotSure} default title will be "${defaultValues.title}"):`,
+  description: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}). Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+  - What was your motivation?
+  - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+  - What problem does it solve?
+  - What did you learn?`,
+};
+
 // array of questions for user
 const promptQuestions = [
   {
     type: 'input',
     name: 'title',
-    message: `${consoleInputHelpers.pleaseEnter} the title of your project:`,
+    message: 'Title:',
+    default: questionsInfo.title,
+    filter: (title) => {
+      return title === questionsInfo.title ? defaultValues.title : title;
+    },
   },
   {
     type: 'input',
     name: 'description',
-    message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
+    message: 'Description',
+    default: `Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+      - What was your motivation?
+      - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+      - What problem does it solve?
+      - What did you learn?`,
+    default: questionsInfo.description,
+    filter: (description) => {
+      return description === questionsInfo.description ? defaultValues.description : description;
+    },
   },
   // {
   //   type: 'input',
@@ -101,13 +129,6 @@ const promptQuestions = [
   //   message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
   // },
 ];
-
-// Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-// - What was your motivation?
-// - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-// - What problem does it solve?
-// - What did you learn?
 
 // ## Table of Contents (Optional)
 

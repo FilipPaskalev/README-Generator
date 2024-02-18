@@ -1,7 +1,7 @@
 // TODO add more elements form https://markdownguide.offshoot.io/extended-syntax/
 const markdownElements = {
   h1: {
-    getOpenTag: () => '# ',
+    getOpenTag: () => '#',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
@@ -9,7 +9,7 @@ const markdownElements = {
     },
   },
   h2: {
-    getOpenTag: () => '## ',
+    getOpenTag: () => '##',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
@@ -17,7 +17,7 @@ const markdownElements = {
     },
   },
   h3: {
-    getOpenTag: () => '### ',
+    getOpenTag: () => '###',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
@@ -25,7 +25,7 @@ const markdownElements = {
     },
   },
   h4: {
-    getOpenTag: () => '#### ',
+    getOpenTag: () => '####',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
@@ -33,7 +33,7 @@ const markdownElements = {
     },
   },
   h5: {
-    getOpenTag: () => '##### ',
+    getOpenTag: () => '#####',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
@@ -41,7 +41,7 @@ const markdownElements = {
     },
   },
   h6: {
-    getOpenTag: () => '###### ',
+    getOpenTag: () => '######',
     getCloseTag: () => '',
     setText: (title) => title,
     getResult: function (title) {
