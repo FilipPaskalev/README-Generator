@@ -1,50 +1,10 @@
-function renderLicenseBadge(license) {}
+// const MD = require('../utils/elements');
+import markdownElements from '../utils/elements.js';
 
-function renderProjectTitle(title) {
-    return `# ${title}`
-}
-
-function renderDescription(description) {
-    return `## Description\n\n${description}`
-}
-
-function renderTOC(tableOfContents) {
-    return `## Table of Contents\n\n${tableOfContents}`
-}
-
-function renderInstallation(installation) {
-    return `## Installation\n\n${installation}`
-}
-
-function renderUsage(usage) {
-    return `## Usage\n\n${usage}`
-}
-
-function renderFeatures(features) {
-    return `## Features\n\n${features}`
-}
-
-function renderContributing(contributing) {
-    return `## Contributing\n\n${contributing}`
-}
-
-function renderCredits(credits) {
-    return `## Credits\n\n${credits}`
-}
-
-function renderLicense(license) {
-    return `## License\n\n${license}`
-}
-
-function renderTests(tests) {
-    return `## Tests\n\n${tests}`
-}
-
+// Purpose: This file will generate the markdown for the README file
 // function to generate markdown for README
-function generateMarkdown(data) {
-    return `# ${data.title}
-
-`
+export default function generateMarkdown(data) {
+  return `
+    ${markdownElements.h1.getResult(data.title)}
+`;
 }
-
-module.exports = generateMarkdown

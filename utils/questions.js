@@ -1,3 +1,5 @@
+import consoleInputHelpers from './utils.js';
+
 // array of questions for user
 const questions = [
   {
@@ -5,102 +7,100 @@ const questions = [
     name: 'title',
     message: `${consoleInputHelpers.pleaseEnter} the title of your project:`,
   },
-  {
-    type: 'input',
-    name: 'description',
-    message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
-  },
-  {
-    type: 'input',
-    name: 'tableOfContents',
-    message: `Select is table of contents is required for your project (${consoleInputHelpers.ifYouNotSure}):`,
-  },
-  {
-    type: 'input',
-    name: 'installation',
-    message: `${consoleInputHelpers.pleaseEnter} installation instructions for your project:`,
-  },
-  {
-    type: 'input',
-    name: 'usage',
-    message: `${consoleInputHelpers.pleaseEnter} instructions and examples for use:`,
-  },
-  {
-    type: 'input',
-    name: 'screenshot',
-    message: `${consoleInputHelpers.pleaseEnter} relative path to the image you want to use as the screenshot for your project (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  },
-  {
-    type: 'input',
-    name: 'deployedUrl',
-    message: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  },
-  {
-    type: 'checkbox',
-    name: 'license',
-    message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
-    default: ['none'],
-    choices: (questions.find((question) => question.name === 'license').choices = [
-      ...getLicenseAbbreviations(),
-      'none',
-    ]),
-  },
-  {
-    type: 'input',
-    name: 'dependencies',
-    message: `List any project dependencies here (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-  },
-  {
-    type: 'input',
-    name: 'features',
-    message: 'List some cool features about this project here (if any):',
-  },
-  {
-    type: 'input',
-    name: 'languagesAndTechnologies',
-    message: `${consoleInputHelpers.pleaseEnter} languages or technologies associated with this project:`,
-  },
-  {
-    type: 'input',
-    name: 'authorName',
-    message: 'Write your GitHub username here:',
-  },
-  {
-    type: 'input',
-    name: 'authorEmail',
-    message: 'Provide a valid email address for users to reach you for questions:',
-    default: () => {},
-    validate: function (authorEmail) {
-      valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
+  // {
+  //   type: 'input',
+  //   name: 'description',
+  //   message: `${consoleInputHelpers.pleaseEnter} purpose and functionality of this project in 2-3 sentences (${consoleInputHelpers.ifYouNotSure}):`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'tableOfContents',
+  //   message: `Select is table of contents is required for your project (${consoleInputHelpers.ifYouNotSure}):`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'installation',
+  //   message: `${consoleInputHelpers.pleaseEnter} installation instructions for your project:`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'usage',
+  //   message: `${consoleInputHelpers.pleaseEnter} instructions and examples for use:`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'screenshot',
+  //   message: `${consoleInputHelpers.pleaseEnter} relative path to the image you want to use as the screenshot for your project (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'deployedUrl',
+  //   message: `${consoleInputHelpers.pleaseEnter} URL where a user can access your deployed application. (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  // },
+  // {
+  //   type: 'checkbox',
+  //   name: 'license',
+  //   message: `Please select a license applicable to this project (${consoleInputHelpers.ifYouNotSure}):`,
+  //   default: ['none'],
+  //   choices: (questions.find((question) => question.name === 'license').choices = [
+  //     ...getLicenseAbbreviations(),
+  //     'none',
+  //   ]),
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'dependencies',
+  //   message: `List any project dependencies here (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'features',
+  //   message: 'List some cool features about this project here (if any):',
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'languagesAndTechnologies',
+  //   message: `${consoleInputHelpers.pleaseEnter} languages or technologies associated with this project:`,
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'authorName',
+  //   message: 'Write your GitHub username here:',
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'authorEmail',
+  //   message: 'Provide a valid email address for users to reach you for questions:',
+  //   default: () => {},
+  //   validate: function (authorEmail) {
+  //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(authorEmail);
 
-      if (valid) {
-        console.log('Thank you for providing a valid email address.');
-        return true;
-      } else {
-        console.log('Please enter a valid email address.');
-        return false;
-      }
-    },
-  },
-  {
-    type: 'input',
-    name: 'contributors',
-    message: `Please list any contributors. (Use GitHub usernames) (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
-    default: '',
-  },
-  {
-    type: 'input',
-    name: 'test',
-    message: 'Provide walkthrough of required tests (if applicable):',
-  },
-  {
-    type: 'questions',
-    name: 'questions',
-    message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
-  },
+  //     if (valid) {
+  //       console.log('Thank you for providing a valid email address.');
+  //       return true;
+  //     } else {
+  //       console.log('Please enter a valid email address.');
+  //       return false;
+  //     }
+  //   },
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'contributors',
+  //   message: `Please list any contributors. (Use GitHub usernames) (${consoleInputHelpers.ifYouDoNotHaveAny}):`,
+  //   default: '',
+  // },
+  // {
+  //   type: 'input',
+  //   name: 'test',
+  //   message: 'Provide walkthrough of required tests (if applicable):',
+  // },
+  // {
+  //   type: 'questions',
+  //   name: 'questions',
+  //   message: `${consoleInputHelpers.pleaseEnter} description of how to reach you for questions ${consoleInputHelpers.ifYouNotSure}:`,
+  // },
 ];
-
-module.exports = questions;
 
 // Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
@@ -165,3 +165,5 @@ module.exports = questions;
 // ## Tests
 
 // Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+
+export default questions;

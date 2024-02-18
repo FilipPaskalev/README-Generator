@@ -1,4 +1,4 @@
-const mit = (name, year) => {
+export default mit = (name, year) => {
   `MIT License
 
 Copyright (c) ${year} ${name}
@@ -22,5 +22,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 };
-
-module.exports = mit;

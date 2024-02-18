@@ -1,9 +1,16 @@
-const mit = require('./utils/templates/mit');
-const apacheV2 = require('./utils/templates/apacheV2');
-const aflV3 = require('./utils/templates/aflV3');
-const artisticV2 = require('./utils/templates/artisticV2');
+// const mit = require('./utils/templates/mit');
+import mit from './utils/templates/mit.js';
 
-const licenses = new Map([
+// const apacheV2 = require('./utils/templates/apacheV2');
+import apacheV2 from './utils/templates/apacheV2.js';
+
+// const aflV3 = require('./utils/templates/aflV3');
+import aflV3 from './utils/templates/aflV3.js';
+
+// const artisticV2 = require('./utils/templates/artisticV2');
+import artisticV2 from './utils/templates/artisticV2.js';
+
+export default licenses = new Map([
   ['default', ['Default', 'No license']], // Set 'none' for the default choice
   ['AFL-3.0', ['Academic Free License v3.0', aflV3]],
   ['Apache-2.0', ['Apache license 2.0', apacheV2]],
@@ -51,5 +58,3 @@ const licenses = new Map([
   ['Unlicense', ['The Unlicense', 'Your description for Unlicense']],
   ['Zlib', ['zLib License', 'Your description for Zlib']],
 ]);
-
-module.exports = licenses;

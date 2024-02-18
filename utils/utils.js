@@ -1,5 +1,3 @@
-const licenses = require('./licenses');
-
 const consoleInputHelpers = {
   pleaseEnter: 'Please enter',
   ifYouDoNotHaveAny: "If you don't have any, just press enter",
@@ -7,7 +5,4 @@ const consoleInputHelpers = {
   ifApplicable: 'if applicable',
 };
 
-// Function to extract license abbreviations from the licensesMap
-function getLicenseAbbreviations() {
-  return Array.from(licenses.keys());
-}
+export default consoleInputHelpers;

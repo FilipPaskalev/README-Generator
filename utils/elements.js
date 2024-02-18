@@ -137,4 +137,4 @@ const markdownElements = {
   },
 };
 
-module.exports = markdownElements;
+export default markdownElements;

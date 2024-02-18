@@ -1,4 +1,4 @@
-const aflV3 = () => `Academic Free License ("AFL") v. 3.0
+export default aflV3 = () => `Academic Free License ("AFL") v. 3.0
 
 This Academic Free License (the "License") applies to any original work of
 authorship (the "Original Work") whose owner (the "Licensor") has placed the
@@ -170,5 +170,3 @@ that is not confusingly similar to the notice in this License; and (iii) You
 may not claim that your original works are open source software unless your
 Modified License has been approved by Open Source Initiative (OSI) and You
 comply with its license review and certification process.`;
-
-module.exports = aflV3;
