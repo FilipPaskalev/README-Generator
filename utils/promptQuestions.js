@@ -60,6 +60,7 @@ const shadowMessages = {
   languagesAndTechnologies: `${HELPERS.pleaseEnter} languages or technologies associated with this project. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
   gitHubUsername: 'Write your GitHub username here:',
   authorEmail: 'Provide a valid email address for users to reach you for questions:',
+  contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
 };
 
 const titleFilter = (title) => {
@@ -100,6 +101,10 @@ const gitHubUsernameFilter = (gitHubUsername) => {
 
 const authorEmailFilter = (authorEmail) => {
   return authorEmail === shadowMessages.authorEmail ? '' : authorEmail;
+};
+
+const contributorsFilter = (contributors) => {
+  return contributors === shadowMessages.contributors ? '' : contributors;
 };
 
 const validateGitHubUsername = (username) => {
@@ -210,8 +215,9 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'contributors',
-    message: `Please list any contributors. (Use GitHub usernames) (${HELPERS.ifYouDoNotHaveAny}):`,
-    default: '',
+    message: promptMessages.contributors,
+    default: shadowMessages.contributors,
+    filter: contributorsFilter,
   },
   // {
   //   type: 'input',
