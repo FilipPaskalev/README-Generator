@@ -121,6 +121,10 @@ const testFilter = (test) => {
   return test === shadowMessages.test ? '' : test;
 };
 
+const questionsFilter = (questions) => {
+  return questions === shadowMessages.questions ? '' : questions;
+};
+
 const validateGitHubUsername = (username) => {
   const usernameRegex = /^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38}$/;
   return usernameRegex.test(username) ? true : 'Please enter a valid GitHub username.';
@@ -240,11 +244,13 @@ const promptQuestions = [
     default: shadowMessages.test,
     filter: testFilter,
   },
-  // {
-  //   type: 'questions',
-  //   name: 'questions',
-  //   message: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}:`,
-  // },
+  {
+    type: 'questions',
+    name: 'questions',
+    message: promptMessages.questions,
+    default: shadowMessages.questions,
+    filter: questionsFilter,
+  },
 ];
 
 // ## Credits
