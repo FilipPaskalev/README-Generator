@@ -1,4 +1,4 @@
-import MD from '../utils/elements.js';
+import MD from '../utils/markdownElements.js';
 
 function renderProjectTitle(title) {
   return MD.h1.getResult(title);
