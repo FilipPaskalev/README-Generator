@@ -70,6 +70,7 @@ const shadowMessages = {
   authorEmail: 'Provide a valid email address for users to reach you for questions:',
   contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
   test: 'Provide walkthrough of required tests ${HELPERS.ifApplicable}',
+  questions: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}`,
 };
 
 const titleFilter = (title) => {
@@ -118,6 +119,10 @@ const contributorsFilter = (contributors) => {
 
 const testFilter = (test) => {
   return test === shadowMessages.test ? '' : test;
+};
+
+const questionsFilter = (questions) => {
+  return questions === shadowMessages.questions ? '' : questions;
 };
 
 const validateGitHubUsername = (username) => {
@@ -239,11 +244,13 @@ const promptQuestions = [
     default: shadowMessages.test,
     filter: testFilter,
   },
-  // {
-  //   type: 'questions',
-  //   name: 'questions',
-  //   message: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}:`,
-  // },
+  {
+    type: 'questions',
+    name: 'questions',
+    message: promptMessages.questions,
+    default: shadowMessages.questions,
+    filter: questionsFilter,
+  },
 ];
 
 // ## Credits
