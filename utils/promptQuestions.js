@@ -29,6 +29,14 @@ const defaultValues = {
   projectCover: './res/images/project-cover-1280x640.png',
   deployedUrl: '',
   license: 'unlicensed',
+  dependencies: '',
+  features: '',
+  languagesAndTechnologies: '',
+  gitHubUsername: '',
+  authorEmail: '',
+  contributors: '',
+  test: '',
+  questions: '',
 };
 
 const shadowMessages = {
@@ -61,6 +69,7 @@ const shadowMessages = {
   gitHubUsername: 'Write your GitHub username here:',
   authorEmail: 'Provide a valid email address for users to reach you for questions:',
   contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
+  test: 'Provide walkthrough of required tests ${HELPERS.ifApplicable}',
 };
 
 const titleFilter = (title) => {
@@ -105,6 +114,10 @@ const authorEmailFilter = (authorEmail) => {
 
 const contributorsFilter = (contributors) => {
   return contributors === shadowMessages.contributors ? '' : contributors;
+};
+
+const testFilter = (test) => {
+  return test === shadowMessages.test ? '' : test;
 };
 
 const validateGitHubUsername = (username) => {
@@ -219,11 +232,13 @@ const promptQuestions = [
     default: shadowMessages.contributors,
     filter: contributorsFilter,
   },
-  // {
-  //   type: 'input',
-  //   name: 'test',
-  //   message: 'Provide walkthrough of required tests (if applicable):',
-  // },
+  {
+    type: 'input',
+    name: 'test',
+    message: promptMessages.test,
+    default: shadowMessages.test,
+    filter: testFilter,
+  },
   // {
   //   type: 'questions',
   //   name: 'questions',
