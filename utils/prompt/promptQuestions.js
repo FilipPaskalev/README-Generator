@@ -1,5 +1,5 @@
-import HELPERS from './utils.js';
-import LICENSES from './licenses.js';
+import HELPERS from '../utils.js';
+import LICENSES from '../licenses.js';
 
 const promptMessages = {
   title: 'Title:',
