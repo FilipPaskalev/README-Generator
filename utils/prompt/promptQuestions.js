@@ -1,6 +1,6 @@
-import HELPERS from '../utils.js';
 import LICENSES from '../licenses.js';
 import PROMPT_MESSAGES from './promptMessages.js';
+import SHADOW_MESSAGES from './shadowMessages.js';
 
 const defaultValues = {
   title: `Title`,
@@ -21,90 +21,56 @@ const defaultValues = {
   questions: '',
 };
 
-const shadowMessages = {
-  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${HELPERS.ifYouNotSure} default title will be "${defaultValues.title}". ${HELPERS.pressEnter}`,
-  description: `${HELPERS.pleaseEnter} purpose and functionality of this project in 2-3 sentences. ${HELPERS.ifYouNotSure}. Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-  - What was your motivation?
-  - Why did you build this project? Note: the answer is not "Because it was a homework assignment."
-  - What problem does it solve?
-  - What did you learn?
-  ${HELPERS.pressEnter}`,
-  toc: `If your README is long, add a table of contents to make it easy for users to find what they need.
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Credits](#credits)
-  - [License](#license)
-  ... and so on
-  ${HELPERS.ifYouNotSure}. Default value will be NO. ${HELPERS.pressEnter}`,
-  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running. ${HELPERS.ifYouNotSure}. Default value will be YES. ${HELPERS.pressEnter}`,
-  usage: `Provide instructions and examples for use. Include screenshots as needed. ${HELPERS.ifYouNotSure}. Default value will be YES. ${HELPERS.pressEnter}`,
-  projectCover: `${HELPERS.pleaseEnter} relative filepath to the project cover image, ${HELPERS.ifApplicable}. Default path is './res/images/project-cover-1280x640.png'. 
-  Hint:
-  To add a screenshot, use "res/images" folder in repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-  ![alt text](res/images/screenshot.png)
-  ${HELPERS.pressEnter}`,
-  deployedUrl: `${HELPERS.pleaseEnter} URL where a user can access your deployed application. ${HELPERS.ifYouDoNotHaveAny}. ${HELPERS.pressEnter}`,
-  license: `Please select a license applicable to this project. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
-  dependencies: `List any project dependencies here ${HELPERS.ifYouDoNotHaveAny}. ${HELPERS.pressEnter}`,
-  features: `List some cool features about this project here ${HELPERS.ifApplicable}. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
-  languagesAndTechnologies: `${HELPERS.pleaseEnter} languages or technologies associated with this project. ${HELPERS.ifYouNotSure}. ${HELPERS.pressEnter}`,
-  gitHubUsername: 'Write your GitHub username here:',
-  authorEmail: 'Provide a valid email address for users to reach you for questions:',
-  contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
-  test: `Provide walkthrough of required tests ${HELPERS.ifApplicable}`,
-  questions: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}`,
-};
-
 const titleFilter = (title) => {
-  return title === shadowMessages.title ? defaultValues.title : title;
+  return title === SHADOW_MESSAGES.title ? defaultValues.title : title;
 };
 
 const descriptionFilter = (description) => {
-  return description === shadowMessages.description ? defaultValues.description : description;
+  return description === SHADOW_MESSAGES.description ? defaultValues.description : description;
 };
 
 const tocFilter = (toc) => {
-  return toc === shadowMessages.toc ? defaultValues.toc : true;
+  return toc === SHADOW_MESSAGES.toc ? defaultValues.toc : true;
 };
 
 const installationFilter = (installation) => {
-  return installation === shadowMessages.installation ? defaultValues.installation : '';
+  return installation === SHADOW_MESSAGES.installation ? defaultValues.installation : '';
 };
 
 const usageFilter = (usage) => {
-  return usage === shadowMessages.usage ? '' : defaultValues.usage;
+  return usage === SHADOW_MESSAGES.usage ? '' : defaultValues.usage;
 };
 
 const projectCoverFilter = (projectCover) => {
-  return projectCover === shadowMessages.projectCover ? defaultValues.projectCover : projectCover;
+  return projectCover === SHADOW_MESSAGES.projectCover ? defaultValues.projectCover : projectCover;
 };
 
 const deployedUrlFilter = (deployedUrl) => {
-  return deployedUrl === shadowMessages.deployedUrl ? '' : deployedUrl;
+  return deployedUrl === SHADOW_MESSAGES.deployedUrl ? '' : deployedUrl;
 };
 
 const licenseFilter = (license) => {
-  return license === shadowMessages.license ? defaultValues.license : license;
+  return license === SHADOW_MESSAGES.license ? defaultValues.license : license;
 };
 
 const gitHubUsernameFilter = (gitHubUsername) => {
-  return gitHubUsername === shadowMessages.gitHubUsername ? '' : gitHubUsername;
+  return gitHubUsername === SHADOW_MESSAGES.gitHubUsername ? '' : gitHubUsername;
 };
 
 const authorEmailFilter = (authorEmail) => {
-  return authorEmail === shadowMessages.authorEmail ? '' : authorEmail;
+  return authorEmail === SHADOW_MESSAGES.authorEmail ? '' : authorEmail;
 };
 
 const contributorsFilter = (contributors) => {
-  return contributors === shadowMessages.contributors ? '' : contributors;
+  return contributors === SHADOW_MESSAGES.contributors ? '' : contributors;
 };
 
 const testFilter = (test) => {
-  return test === shadowMessages.test ? '' : test;
+  return test === SHADOW_MESSAGES.test ? '' : test;
 };
 
 const questionsFilter = (questions) => {
-  return questions === shadowMessages.questions ? '' : questions;
+  return questions === SHADOW_MESSAGES.questions ? '' : questions;
 };
 
 const validateGitHubUsername = (username) => {
@@ -125,56 +91,56 @@ const promptQuestions = [
     type: 'input',
     name: 'title',
     message: PROMPT_MESSAGES.title,
-    default: shadowMessages.title,
+    default: SHADOW_MESSAGES.title,
     filter: titleFilter,
   },
   {
     type: 'input',
     name: 'description',
     message: PROMPT_MESSAGES.description,
-    default: shadowMessages.description,
+    default: SHADOW_MESSAGES.description,
     filter: descriptionFilter,
   },
   {
     type: 'input',
     name: 'toc',
     message: PROMPT_MESSAGES.toc,
-    default: shadowMessages.toc,
+    default: SHADOW_MESSAGES.toc,
     filter: tocFilter,
   },
   {
     type: 'input',
     name: 'installation',
     message: PROMPT_MESSAGES.installation,
-    default: shadowMessages.installation,
+    default: SHADOW_MESSAGES.installation,
     filter: installationFilter,
   },
   {
     type: 'input',
     name: 'usage',
     message: PROMPT_MESSAGES.usage,
-    default: shadowMessages.installation,
+    default: SHADOW_MESSAGES.installation,
     filter: usageFilter,
   },
   {
     type: 'input',
     name: 'projectCover',
     message: PROMPT_MESSAGES.projectCover,
-    default: shadowMessages.projectCover,
+    default: SHADOW_MESSAGES.projectCover,
     filter: projectCoverFilter,
   },
   {
     type: 'input',
     name: 'deployedUrl',
     message: PROMPT_MESSAGES.deployedUrl,
-    default: shadowMessages.deployedUrl,
+    default: SHADOW_MESSAGES.deployedUrl,
     filter: deployedUrlFilter,
   },
   {
     type: 'list',
     name: 'license',
     message: PROMPT_MESSAGES.license,
-    default: shadowMessages.license,
+    default: SHADOW_MESSAGES.license,
     choices: licenseChoiceList,
     filter: licenseFilter,
   },
@@ -182,25 +148,25 @@ const promptQuestions = [
     type: 'input',
     name: 'dependencies',
     message: PROMPT_MESSAGES.dependencies,
-    default: shadowMessages.dependencies,
+    default: SHADOW_MESSAGES.dependencies,
   },
   {
     type: 'input',
     name: 'features',
     message: PROMPT_MESSAGES.features,
-    default: shadowMessages.features,
+    default: SHADOW_MESSAGES.features,
   },
   {
     type: 'input',
     name: 'languagesAndTechnologies',
     message: PROMPT_MESSAGES.languagesAndTechnologies,
-    defaultValues: shadowMessages.languagesAndTechnologies,
+    defaultValues: SHADOW_MESSAGES.languagesAndTechnologies,
   },
   {
     type: 'input',
     name: 'gitHubUsername',
     message: PROMPT_MESSAGES.gitHubUsername,
-    default: shadowMessages.gitHubUsername,
+    default: SHADOW_MESSAGES.gitHubUsername,
     validate: validateGitHubUsername,
     filter: gitHubUsernameFilter,
   },
@@ -208,7 +174,7 @@ const promptQuestions = [
     type: 'input',
     name: 'authorEmail',
     message: PROMPT_MESSAGES.authorEmail,
-    default: shadowMessages.authorEmail,
+    default: SHADOW_MESSAGES.authorEmail,
     validate: validateAuthorEmail,
     filter: authorEmailFilter,
   },
@@ -216,21 +182,21 @@ const promptQuestions = [
     type: 'input',
     name: 'contributors',
     message: PROMPT_MESSAGES.contributors,
-    default: shadowMessages.contributors,
+    default: SHADOW_MESSAGES.contributors,
     filter: contributorsFilter,
   },
   {
     type: 'input',
     name: 'test',
     message: PROMPT_MESSAGES.test,
-    default: shadowMessages.test,
+    default: SHADOW_MESSAGES.test,
     filter: testFilter,
   },
   {
     type: 'questions',
     name: 'questions',
     message: PROMPT_MESSAGES.questions,
-    default: shadowMessages.questions,
+    default: SHADOW_MESSAGES.questions,
     filter: questionsFilter,
   },
 ];
