@@ -70,6 +70,7 @@ const shadowMessages = {
   authorEmail: 'Provide a valid email address for users to reach you for questions:',
   contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
   test: 'Provide walkthrough of required tests ${HELPERS.ifApplicable}',
+  questions: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}`,
 };
 
 const titleFilter = (title) => {
