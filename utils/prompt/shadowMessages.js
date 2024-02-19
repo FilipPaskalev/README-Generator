@@ -1,7 +1,8 @@
-import HELPERS from './helpers.js';
+import DEFAULT_VALUES from './defaultValues.js';
+import HELPERS from './inputHelpers.js';
 
 const shadowMessages = {
-  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${HELPERS.ifYouNotSure} default title will be "${defaultValues.title}". ${HELPERS.pressEnter}`,
+  title: `The title of your project is the first thing people see when they access your README. It should capture the main goal, scope, and value of your project in a few words. Avoid vague or generic terms, and use keywords that relate to your client's needs and expectations. ${HELPERS.ifYouNotSure} default title will be "${DEFAULT_VALUES.title}". ${HELPERS.pressEnter}`,
   description: `${HELPERS.pleaseEnter} purpose and functionality of this project in 2-3 sentences. ${HELPERS.ifYouNotSure}. Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
   - What was your motivation?
   - Why did you build this project? Note: the answer is not "Because it was a homework assignment."

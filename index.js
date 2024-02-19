@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 import generateMarkdown from './scripts/generateMarkdown.js';
-import promptQuestions from './utils/prompt/promptQuestions.js';
+import promptQuestions from './utils/prompt/questions.js';
 
 // function to write README file
 function writeToFile(fileName, data) {

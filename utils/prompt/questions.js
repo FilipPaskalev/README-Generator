@@ -1,87 +1,8 @@
 import LICENSES from '../licenses.js';
-import PROMPT_MESSAGES from './promptMessages.js';
+import PROMPT_MESSAGES from './messages.js';
 import SHADOW_MESSAGES from './shadowMessages.js';
-
-const defaultValues = {
-  title: `Title`,
-  description: `Insert a concise overview of your project, including its purpose, goals, and key features. Describe the problem it aims to solve or the need it addresses. You can also include information about the target audience and potential benefits.`,
-  toc: false,
-  installation: `What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.`,
-  usage: 'Provide instructions and examples for use. Include screenshots as needed.',
-  projectCover: './res/images/project-cover-1280x640.png',
-  deployedUrl: '',
-  license: 'unlicensed',
-  dependencies: '',
-  features: '',
-  languagesAndTechnologies: '',
-  gitHubUsername: '',
-  authorEmail: '',
-  contributors: '',
-  test: '',
-  questions: '',
-};
-
-const titleFilter = (title) => {
-  return title === SHADOW_MESSAGES.title ? defaultValues.title : title;
-};
-
-const descriptionFilter = (description) => {
-  return description === SHADOW_MESSAGES.description ? defaultValues.description : description;
-};
-
-const tocFilter = (toc) => {
-  return toc === SHADOW_MESSAGES.toc ? defaultValues.toc : true;
-};
-
-const installationFilter = (installation) => {
-  return installation === SHADOW_MESSAGES.installation ? defaultValues.installation : '';
-};
-
-const usageFilter = (usage) => {
-  return usage === SHADOW_MESSAGES.usage ? '' : defaultValues.usage;
-};
-
-const projectCoverFilter = (projectCover) => {
-  return projectCover === SHADOW_MESSAGES.projectCover ? defaultValues.projectCover : projectCover;
-};
-
-const deployedUrlFilter = (deployedUrl) => {
-  return deployedUrl === SHADOW_MESSAGES.deployedUrl ? '' : deployedUrl;
-};
-
-const licenseFilter = (license) => {
-  return license === SHADOW_MESSAGES.license ? defaultValues.license : license;
-};
-
-const gitHubUsernameFilter = (gitHubUsername) => {
-  return gitHubUsername === SHADOW_MESSAGES.gitHubUsername ? '' : gitHubUsername;
-};
-
-const authorEmailFilter = (authorEmail) => {
-  return authorEmail === SHADOW_MESSAGES.authorEmail ? '' : authorEmail;
-};
-
-const contributorsFilter = (contributors) => {
-  return contributors === SHADOW_MESSAGES.contributors ? '' : contributors;
-};
-
-const testFilter = (test) => {
-  return test === SHADOW_MESSAGES.test ? '' : test;
-};
-
-const questionsFilter = (questions) => {
-  return questions === SHADOW_MESSAGES.questions ? '' : questions;
-};
-
-const validateGitHubUsername = (username) => {
-  const usernameRegex = /^[a-zA-Z\d](?:[a-zA-Z\d]|-(?=[a-zA-Z\d])){0,38}$/;
-  return usernameRegex.test(username) ? true : 'Please enter a valid GitHub username.';
-};
-
-const validateAuthorEmail = (authorEmail) => {
-  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return emailRegex.test(authorEmail) ? true : 'Please enter a valid email address.';
-};
+import * as PROMPT_FILTERS from './filters.js';
+import * as PROMPT_VALIDATORS from './validators.js';
 
 const licenseChoiceList = () => Object.values(LICENSES).map((license) => license.abbreviation);
 
@@ -92,49 +13,49 @@ const promptQuestions = [
     name: 'title',
     message: PROMPT_MESSAGES.title,
     default: SHADOW_MESSAGES.title,
-    filter: titleFilter,
+    filter: PROMPT_FILTERS.titleFilter,
   },
   {
     type: 'input',
     name: 'description',
     message: PROMPT_MESSAGES.description,
     default: SHADOW_MESSAGES.description,
-    filter: descriptionFilter,
+    filter: PROMPT_FILTERS.descriptionFilter,
   },
   {
     type: 'input',
     name: 'toc',
     message: PROMPT_MESSAGES.toc,
     default: SHADOW_MESSAGES.toc,
-    filter: tocFilter,
+    filter: PROMPT_FILTERS.tocFilter,
   },
   {
     type: 'input',
     name: 'installation',
     message: PROMPT_MESSAGES.installation,
     default: SHADOW_MESSAGES.installation,
-    filter: installationFilter,
+    filter: PROMPT_FILTERS.installationFilter,
   },
   {
     type: 'input',
     name: 'usage',
     message: PROMPT_MESSAGES.usage,
     default: SHADOW_MESSAGES.installation,
-    filter: usageFilter,
+    filter: PROMPT_FILTERS.usageFilter,
   },
   {
     type: 'input',
     name: 'projectCover',
     message: PROMPT_MESSAGES.projectCover,
     default: SHADOW_MESSAGES.projectCover,
-    filter: projectCoverFilter,
+    filter: PROMPT_FILTERS.projectCoverFilter,
   },
   {
     type: 'input',
     name: 'deployedUrl',
     message: PROMPT_MESSAGES.deployedUrl,
     default: SHADOW_MESSAGES.deployedUrl,
-    filter: deployedUrlFilter,
+    filter: PROMPT_FILTERS.deployedUrlFilter,
   },
   {
     type: 'list',
@@ -142,7 +63,7 @@ const promptQuestions = [
     message: PROMPT_MESSAGES.license,
     default: SHADOW_MESSAGES.license,
     choices: licenseChoiceList,
-    filter: licenseFilter,
+    filter: PROMPT_FILTERS.licenseFilter,
   },
   {
     type: 'input',
@@ -160,44 +81,44 @@ const promptQuestions = [
     type: 'input',
     name: 'languagesAndTechnologies',
     message: PROMPT_MESSAGES.languagesAndTechnologies,
-    defaultValues: SHADOW_MESSAGES.languagesAndTechnologies,
+    default: SHADOW_MESSAGES.languagesAndTechnologies,
   },
   {
     type: 'input',
     name: 'gitHubUsername',
     message: PROMPT_MESSAGES.gitHubUsername,
     default: SHADOW_MESSAGES.gitHubUsername,
-    validate: validateGitHubUsername,
-    filter: gitHubUsernameFilter,
+    validate: PROMPT_VALIDATORS.validateGitHubUsername,
+    filter: PROMPT_FILTERS.gitHubUsernameFilter,
   },
   {
     type: 'input',
     name: 'authorEmail',
     message: PROMPT_MESSAGES.authorEmail,
     default: SHADOW_MESSAGES.authorEmail,
-    validate: validateAuthorEmail,
-    filter: authorEmailFilter,
+    validate: PROMPT_VALIDATORS.validateAuthorEmail,
+    filter: PROMPT_FILTERS.authorEmailFilter,
   },
   {
     type: 'input',
     name: 'contributors',
     message: PROMPT_MESSAGES.contributors,
     default: SHADOW_MESSAGES.contributors,
-    filter: contributorsFilter,
+    filter: PROMPT_FILTERS.contributorsFilter,
   },
   {
     type: 'input',
     name: 'test',
     message: PROMPT_MESSAGES.test,
     default: SHADOW_MESSAGES.test,
-    filter: testFilter,
+    filter: PROMPT_FILTERS.testFilter,
   },
   {
     type: 'questions',
     name: 'questions',
     message: PROMPT_MESSAGES.questions,
     default: SHADOW_MESSAGES.questions,
-    filter: questionsFilter,
+    filter: PROMPT_FILTERS.questionsFilter,
   },
 ];
 
