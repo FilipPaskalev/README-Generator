@@ -1,24 +1,6 @@
 import HELPERS from '../utils.js';
 import LICENSES from '../licenses.js';
-
-const promptMessages = {
-  title: 'Title:',
-  description: 'Description:',
-  toc: 'Table of Contents:',
-  installation: 'Installation:',
-  usage: 'Usage:',
-  projectCover: 'Project cover:',
-  deployedUrl: 'Deployed URL:',
-  license: 'License:',
-  dependencies: 'Dependencies:',
-  features: 'Features:',
-  languagesAndTechnologies: 'Languages and Technologies:',
-  gitHubUsername: 'GitHub username:',
-  authorEmail: "Author's email:",
-  contributors: 'Contributors:',
-  test: 'Tests:',
-  questions: 'Questions:',
-};
+import PROMPT_MESSAGES from './promptMessages.js';
 
 const defaultValues = {
   title: `Title`,
@@ -69,7 +51,7 @@ const shadowMessages = {
   gitHubUsername: 'Write your GitHub username here:',
   authorEmail: 'Provide a valid email address for users to reach you for questions:',
   contributors: `Please list any contributors. (Use GitHub usernames) ${HELPERS.ifYouDoNotHaveAny}`,
-  test: 'Provide walkthrough of required tests ${HELPERS.ifApplicable}',
+  test: `Provide walkthrough of required tests ${HELPERS.ifApplicable}`,
   questions: `${HELPERS.pleaseEnter} description of how to reach you for questions ${HELPERS.ifYouNotSure}`,
 };
 
@@ -142,56 +124,56 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'title',
-    message: promptMessages.title,
+    message: PROMPT_MESSAGES.title,
     default: shadowMessages.title,
     filter: titleFilter,
   },
   {
     type: 'input',
     name: 'description',
-    message: promptMessages.description,
+    message: PROMPT_MESSAGES.description,
     default: shadowMessages.description,
     filter: descriptionFilter,
   },
   {
     type: 'input',
     name: 'toc',
-    message: promptMessages.toc,
+    message: PROMPT_MESSAGES.toc,
     default: shadowMessages.toc,
     filter: tocFilter,
   },
   {
     type: 'input',
     name: 'installation',
-    message: promptMessages.installation,
+    message: PROMPT_MESSAGES.installation,
     default: shadowMessages.installation,
     filter: installationFilter,
   },
   {
     type: 'input',
     name: 'usage',
-    message: promptMessages.usage,
+    message: PROMPT_MESSAGES.usage,
     default: shadowMessages.installation,
     filter: usageFilter,
   },
   {
     type: 'input',
     name: 'projectCover',
-    message: promptMessages.projectCover,
+    message: PROMPT_MESSAGES.projectCover,
     default: shadowMessages.projectCover,
     filter: projectCoverFilter,
   },
   {
     type: 'input',
     name: 'deployedUrl',
-    message: promptMessages.deployedUrl,
+    message: PROMPT_MESSAGES.deployedUrl,
     default: shadowMessages.deployedUrl,
     filter: deployedUrlFilter,
   },
   {
     type: 'list',
     name: 'license',
-    message: promptMessages.license,
+    message: PROMPT_MESSAGES.license,
     default: shadowMessages.license,
     choices: licenseChoiceList,
     filter: licenseFilter,
@@ -199,25 +181,25 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'dependencies',
-    message: promptMessages.dependencies,
+    message: PROMPT_MESSAGES.dependencies,
     default: shadowMessages.dependencies,
   },
   {
     type: 'input',
     name: 'features',
-    message: promptMessages.features,
+    message: PROMPT_MESSAGES.features,
     default: shadowMessages.features,
   },
   {
     type: 'input',
     name: 'languagesAndTechnologies',
-    message: promptMessages.languagesAndTechnologies,
+    message: PROMPT_MESSAGES.languagesAndTechnologies,
     defaultValues: shadowMessages.languagesAndTechnologies,
   },
   {
     type: 'input',
     name: 'gitHubUsername',
-    message: promptMessages.gitHubUsername,
+    message: PROMPT_MESSAGES.gitHubUsername,
     default: shadowMessages.gitHubUsername,
     validate: validateGitHubUsername,
     filter: gitHubUsernameFilter,
@@ -225,7 +207,7 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'authorEmail',
-    message: promptMessages.authorEmail,
+    message: PROMPT_MESSAGES.authorEmail,
     default: shadowMessages.authorEmail,
     validate: validateAuthorEmail,
     filter: authorEmailFilter,
@@ -233,21 +215,21 @@ const promptQuestions = [
   {
     type: 'input',
     name: 'contributors',
-    message: promptMessages.contributors,
+    message: PROMPT_MESSAGES.contributors,
     default: shadowMessages.contributors,
     filter: contributorsFilter,
   },
   {
     type: 'input',
     name: 'test',
-    message: promptMessages.test,
+    message: PROMPT_MESSAGES.test,
     default: shadowMessages.test,
     filter: testFilter,
   },
   {
     type: 'questions',
     name: 'questions',
-    message: promptMessages.questions,
+    message: PROMPT_MESSAGES.questions,
     default: shadowMessages.questions,
     filter: questionsFilter,
   },
