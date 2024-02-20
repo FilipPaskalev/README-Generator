@@ -16,10 +16,11 @@ function init() {
   const outputPath = `./dist/${fileName}`;
 
   console.log(`
-  Welcome to the Professional README.md Generator
   ===================================================
-  Please answer the following questions to 
-  generate your README.md file.
+    Welcome to the Professional README.md Generator
+  ===================================================
+        Please answer the following questions to 
+            generate your README.md file.
   `);
 
   inquirer.prompt(promptQuestions).then((userResponse) => {
