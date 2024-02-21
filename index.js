@@ -12,8 +12,9 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
-  const fileName = 'README.md';
-  const outputPath = `./dist/${fileName}`;
+  const fileExtension = 'md';
+  const fileName = 'README';
+  const outputDir = `./dist/`;
 
   console.log(`
   ===================================================
@@ -25,8 +26,10 @@ function init() {
 
   inquirer.prompt(promptQuestions).then((userResponse) => {
     console.log('Generating Professional README.md File...');
-    writeToFile(outputPath, generateMarkdown({ ...userResponse }));
-    console.log(`Your README.md file has been successfully generated at ${outputPath}`);
+    writeToFile(`${outputDir}${fileName}.${fileExtension}`, generateMarkdown({ ...userResponse }));
+    console.log(
+      `Your README.md file has been successfully generated at "${outputDir}${fileName}.${fileExtension}"\n`
+    );
   });
 }
 
