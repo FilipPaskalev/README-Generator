@@ -2,6 +2,7 @@ import AFL_TEMPLATE from './templates/aflV3.js';
 import APACHE_TEMPLATE from './templates/apacheV2.js';
 import ARTISTIC_TEMPLATE from './templates/artisticV2.js';
 import MIT_TEMPLATE from './templates/mit.js';
+import BSL1 from './templates/bsl1.js';
 
 const licenses = {
   unlicensed: {
@@ -29,11 +30,15 @@ const licenses = {
     abbreviation: 'MIT',
     template: MIT_TEMPLATE,
   },
+  bsl1: {
+    name: 'Boost Software License 1.0',
+    abbreviation: 'BSL-1.0',
+    template: BSL1,
+  },
 };
 
 // TODO add templates for all licenses
 // export default licenses = new Map([
-//   ['BSL-1.0', ['Boost Software License 1.0', 'Your description for BSL-1.0']],
 //   ['BSD-2-Clause', ["BSD 2-clause 'Simplified' license", 'Your description for BSD-2-Clause']],
 //   [
 //     'BSD-3-Clause',

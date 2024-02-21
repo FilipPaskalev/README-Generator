@@ -4,7 +4,7 @@ const markdownElements = {
     getOpenTag: () => '#',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -12,7 +12,7 @@ const markdownElements = {
     getOpenTag: () => '##',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -20,7 +20,7 @@ const markdownElements = {
     getOpenTag: () => '###',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -28,7 +28,7 @@ const markdownElements = {
     getOpenTag: () => '####',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -36,7 +36,7 @@ const markdownElements = {
     getOpenTag: () => '#####',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -44,7 +44,7 @@ const markdownElements = {
     getOpenTag: () => '######',
     getCloseTag: () => '',
     setText: (title) => title,
-    getResult: function (title) {
+    getResultWithText: function (title) {
       return `${this.getOpenTag()} ${this.setText(title)} ${this.getCloseTag()}`;
     },
   },
@@ -54,10 +54,10 @@ const markdownElements = {
     getOpenTagHTML: () => '<mark>',
     getCloseTagHTML: () => '</mark>',
     setText: (text) => text,
-    getResultMD: function (text) {
+    getResultWithTextMD: function (text) {
       return `${this.getOpenTagMD()} ${this.setText(text)} ${this.getCloseTagMD()}`;
     },
-    getResultHTML: function (text) {
+    getResultWithTextHTML: function (text) {
       return `${this.getOpenTagHTML()} ${this.setText(text)} ${this.getCloseTagHTML()}`;
     },
   },
@@ -65,7 +65,7 @@ const markdownElements = {
     getOpenTag: () => '*',
     getCloseTag: () => '*',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -73,7 +73,7 @@ const markdownElements = {
     getOpenTag: () => '**',
     getCloseTag: () => '**',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -81,7 +81,7 @@ const markdownElements = {
     getOpenTag: () => '***',
     getCloseTag: () => '***',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -89,7 +89,7 @@ const markdownElements = {
     getOpenTag: () => '- ',
     getCloseTag: () => '',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -97,7 +97,7 @@ const markdownElements = {
     getOpenTag: () => '   - ',
     getCloseTag: () => '',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -105,7 +105,7 @@ const markdownElements = {
     getOpenTag: () => '> ',
     getCloseTag: () => '',
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return `${this.getOpenTag()} ${this.setText(text)} ${this.getCloseTag()}`;
     },
   },
@@ -113,7 +113,7 @@ const markdownElements = {
     getOpenTag: () => '```',
     getCloseTag: () => '```',
     setText: (code) => code,
-    getResult: function (code) {
+    getResultWithText: function (code) {
       return `${this.getOpenTag()} ${this.setText(code)} ${this.getCloseTag()}`;
     },
   },
@@ -123,7 +123,7 @@ const markdownElements = {
     setText: (linkText, url) => [linkText, url],
     setUrl: (url) => url,
     setAltText: (altText) => altText,
-    getResult: function (linkText, url) {
+    getResultWithText: function (linkText, url) {
       const urlWithTags = this.getCloseTag(this.setUrl(url));
 
       return `${this.getOpenTag()} ${this.setText(linkText, this.setUrl(url))} ${urlWithTags}`;
@@ -135,7 +135,7 @@ const markdownElements = {
     setText: (altText, url) => [altText, url],
     setUrl: (url) => url,
     setAltText: (altText) => altText,
-    getResult: function (altText, url) {
+    getResultWithText: function (altText, url) {
       const urlWithTags = this.getCloseTag(this.setUrl(url));
 
       return `${this.getOpenTag()}${this.setText(this.setAltText(altText), this.setUrl(url))}${urlWithTags}`;
@@ -145,13 +145,13 @@ const markdownElements = {
     getOpenTag: () => '---',
     getCloseTag: () => '',
     setText: () => '',
-    getResult: function () {
+    getResultWithText: function () {
       return `${this.getOpenTag()}${this.setText()}${this.getCloseTag()}`;
     },
   },
   text: {
     setText: (text) => text,
-    getResult: function (text) {
+    getResultWithText: function (text) {
       return this.setText(text);
     },
   },
