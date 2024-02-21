@@ -1,38 +1,40 @@
-import MD from '../utils/elements.js';
+import MD from '../utils/markdownElements.js';
 
-function renderProjectTitle(title) {
-  return MD.h1.getResult(title);
-}
+const renderProjectTitle = (title) => MD.h1.getResultWithText(title);
 
-function renderBadges(badges) {}
+const renderDescriptionTitle = (description) => MD.h2.getResultWithText(description);
 
-function renderProjectCover(projectCover) {}
+// TODO add TOC to generateMarkdown
+// const renderTableOfContents = (toc) => MD.h3.getResultWithText(toc);
 
-function renderTOC(toc) {
-  return `${MD.h2.getResult('Table of Contents')}`;
-}
+const renderInstallation = (installation) => MD.h3.getResultWithText(installation);
 
-function renderDescriptionSection(description) {
-  return MD.text.getResult(description);
-}
+const renderUsage = (usage) => MD.h3.getResultWithText(usage);
 
-function renderInstallationSection(installation) {
-  return `${MD.h2.getResult('Installation')}
-  ${installation}`;
-}
+// TODO add license to generateMarkdown
+// const renderLicense = (license) => return MD.h3.getResultWithText(license);
 
-function renderUsageSection(usage) {
-  return `${MD.h2.getResult('Usage')}
-  ${usage}`;
-}
+const renderContributing = (contributing) => MD.h3.getResultWithText(contributing);
+
+const renderTests = (tests) => MD.h3.getResultWithText(tests);
+
+const renderQuestions = (questions) => MD.h3.getResultWithText(questions);
 
 // function to generate markdown for README
 function generateMarkdown(data) {
   return `${renderProjectTitle(data.title)}
-${renderDescriptionSection(data.description)}
-${renderTOC(data.toc)}
-${renderInstallationSection(data.installation)}
-${renderUsageSection(data.usage)}
+
+${renderDescriptionTitle(data.description)}
+
+${renderInstallation(data.installation)}
+
+${renderUsage(data.usage)}
+
+${renderContributing(data.contributing)}
+
+${renderTests(data.tests)}
+
+${renderQuestions(data.questions)}
 `;
 }
 

@@ -12,20 +12,24 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
-  const fileName = 'README.md';
-  const outputPath = `./dist/${fileName}`;
+  const fileExtension = 'md';
+  const fileName = 'README';
+  const outputDir = `./dist/`;
 
   console.log(`
-  Welcome to the Professional README.md Generator
   ===================================================
-  Please answer the following questions to 
-  generate your README.md file.
+    Welcome to the Professional README.md Generator
+  ===================================================
+        Please answer the following questions to 
+            generate your README.md file.
   `);
 
   inquirer.prompt(promptQuestions).then((userResponse) => {
     console.log('Generating Professional README.md File...');
-    writeToFile(outputPath, generateMarkdown({ ...userResponse }));
-    console.log(`Your README.md file has been successfully generated at ${outputPath}`);
+    writeToFile(`${outputDir}${fileName}.${fileExtension}`, generateMarkdown({ ...userResponse }));
+    console.log(
+      `Your README.md file has been successfully generated at "${outputDir}${fileName}.${fileExtension}"\n`
+    );
   });
 }
 

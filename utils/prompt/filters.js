@@ -1,69 +1,45 @@
-import DEFAULT_VALUES from './defaultValues.js';
+import DEFAULT_VALUES from './defVal.js';
+import SHADOW_MESSAGES from './shadowMessages.js';
 
-const titleFilter = (title) => {
-  return title === SHADOW_MESSAGES.title ? DEFAULT_VALUES.title : title;
-};
+const filterTitle = (title) =>
+  title === SHADOW_MESSAGES.title ? DEFAULT_VALUES.title.header : title;
 
-const descriptionFilter = (description) => {
-  return description === SHADOW_MESSAGES.description ? DEFAULT_VALUES.description : description;
-};
+const filterDescription = (description) =>
+  description === SHADOW_MESSAGES.description ? DEFAULT_VALUES.description.header : description;
 
-const tocFilter = (toc) => {
-  return toc === SHADOW_MESSAGES.toc ? DEFAULT_VALUES.toc : true;
-};
+const filterInstallation = (installation) =>
+  installation === SHADOW_MESSAGES.installation ? DEFAULT_VALUES.installation.header : installation;
 
-const installationFilter = (installation) => {
-  return installation === SHADOW_MESSAGES.installation ? DEFAULT_VALUES.installation : '';
-};
+const filterUsage = (usage) =>
+  usage === SHADOW_MESSAGES.usage ? DEFAULT_VALUES.usage.header : usage;
 
-const usageFilter = (usage) => {
-  return usage === SHADOW_MESSAGES.usage ? '' : DEFAULT_VALUES.usage;
-};
+// TODO finish TOC filter
 
-const projectCoverFilter = (projectCover) => {
-  return projectCover === SHADOW_MESSAGES.projectCover ? DEFAULT_VALUES.projectCover : projectCover;
-};
+// const filterTOC = (toc) => {
+//   return toc === SHADOW_MESSAGES.toc ? DEFAULT_VALUES.toc.header : toc;
+// };
 
-const deployedUrlFilter = (deployedUrl) => {
-  return deployedUrl === SHADOW_MESSAGES.deployedUrl ? '' : deployedUrl;
-};
+// const filterLicense = (license) => {
+//   return license === SHADOW_MESSAGES.license ? DEFAULT_VALUES.license.header : license;
+// };
 
-const licenseFilter = (license) => {
-  return license === SHADOW_MESSAGES.license ? DEFAULT_VALUES.license : license;
-};
+const filterContributing = (contributing) =>
+  contributing === SHADOW_MESSAGES.contributing ? DEFAULT_VALUES.contributing.header : contributing;
 
-const gitHubUsernameFilter = (gitHubUsername) => {
-  return gitHubUsername === SHADOW_MESSAGES.gitHubUsername ? '' : gitHubUsername;
-};
+const filterTests = (tests) =>
+  tests === SHADOW_MESSAGES.tests ? DEFAULT_VALUES.tests.header : tests;
 
-const authorEmailFilter = (authorEmail) => {
-  return authorEmail === SHADOW_MESSAGES.authorEmail ? '' : authorEmail;
-};
-
-const contributorsFilter = (contributors) => {
-  return contributors === SHADOW_MESSAGES.contributors ? '' : contributors;
-};
-
-const testFilter = (test) => {
-  return test === SHADOW_MESSAGES.test ? '' : test;
-};
-
-const questionsFilter = (questions) => {
-  return questions === SHADOW_MESSAGES.questions ? '' : questions;
-};
+const filterQuestions = (questions) =>
+  questions === SHADOW_MESSAGES.questions ? DEFAULT_VALUES.questions.header : questions;
 
 export default {
-  titleFilter,
-  descriptionFilter,
-  tocFilter,
-  installationFilter,
-  usageFilter,
-  projectCoverFilter,
-  deployedUrlFilter,
-  licenseFilter,
-  gitHubUsernameFilter,
-  authorEmailFilter,
-  contributorsFilter,
-  testFilter,
-  questionsFilter,
+  filterTitle,
+  filterDescription,
+  // filterTOC,
+  filterInstallation,
+  filterUsage,
+  // filterLicense,
+  filterContributing,
+  filterTests,
+  filterQuestions,
 };
