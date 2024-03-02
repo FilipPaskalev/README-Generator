@@ -3,5 +3,6 @@
   "mainMenu": "Select an option:",
   "defaultGenerated": "Default README.md generated in dist directory.",
   "customGenerated": "Custom README.md generated in dist directory.",
-  "exitMessage": "Exiting the program..."
+  "exitMessage": "Exiting the program...",
+  "invalidOption": "Invalid option. Please select a valid option."
 }

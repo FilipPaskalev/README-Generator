@@ -31,7 +31,14 @@ const mainMenu = async () => {
 
   switch (option) {
     case 'default':
-      await generateDefaultReadme();
+      const { projectName } = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'projectName',
+          message: 'Enter the name of your project:',
+        },
+      ]);
+      await generateDefaultReadme(projectName);
       break;
     case 'custom':
       await generateCustomReadme();
@@ -40,7 +47,7 @@ const mainMenu = async () => {
       console.log(MENU_MSGS.exitMessage);
       process.exit(0);
     default:
-      console.log('Invalid option selected');
+      console.log(MENU_MSGS.invalidOption);
   }
 };
 
