@@ -1,41 +1,37 @@
-import AFL_TEMPLATE from './templates/aflV3.js';
-import APACHE_TEMPLATE from './templates/apacheV2.js';
-import ARTISTIC_TEMPLATE from './templates/artisticV2.js';
-import MIT_TEMPLATE from './templates/mit.js';
-import BSL1 from './templates/bsl1.js';
+const fs = require('fs');
+const path = require('path');
 
-const licenses = {
-  unlicensed: {
-    name: 'unlicensed',
-    abbreviation: 'unlicensed',
-    template: 'This project is unlicensed and is intended to be used as a reference or template.',
-  },
-  afl: {
-    name: 'Academic Free License v3.0',
-    abbreviation: 'AFL-3.0',
-    template: AFL_TEMPLATE,
-  },
-  apache: {
-    name: 'Apache license 2.0',
-    abbreviation: 'Apache-2.0',
-    template: APACHE_TEMPLATE,
-  },
-  artistic: {
-    name: 'Artistic license 2.0',
-    abbreviation: 'Artistic-2.0',
-    template: ARTISTIC_TEMPLATE,
-  },
-  mit: {
-    name: 'Massachusetts Institute of Technology',
-    abbreviation: 'MIT',
-    template: MIT_TEMPLATE,
-  },
-  bsl1: {
-    name: 'Boost Software License 1.0',
-    abbreviation: 'BSL-1.0',
-    template: BSL1,
-  },
-};
+function getFileObjects(directoryPath) {
+  const files = fs.readdirSync(directoryPath);
+
+  const fileObjects = files.map((file) => {
+    const fileName = path.parse(file).name;
+    const isHeader = fileName.includes('header');
+    const isTemplate = !isHeader;
+
+    // Read file content
+    const filePath = path.join(directoryPath, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    const abbreviation = fileName.toUpperCase();
+
+    return {
+      [fileName]: {
+        content: content,
+        isHeader: isHeader,
+        isTemplate: isTemplate,
+        abbreviation: abbreviation,
+      },
+    };
+  });
+
+  return fileObjects;
+}
+
+// Usage
+const directoryPath = './licenses';
+const files = getFileObjects(directoryPath);
+console.log(files);
 
 // TODO add templates for all licenses
 // export default licenses = new Map([
@@ -80,5 +76,3 @@ const licenses = {
 //   ['Unlicense', ['The Unlicense', 'Your description for Unlicense']],
 //   ['Zlib', ['zLib License', 'Your description for Zlib']],
 // ]);
-
-export default licenses;

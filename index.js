@@ -18,7 +18,7 @@ function init() {
 
   console.log(`
   ===================================================
-    Welcome to the Professional README.md Generator
+            Welcome to the README Generator
   ===================================================
         Please answer the following questions to 
             generate your README.md file.
