@@ -1,4 +1,4 @@
-# [Your Project Title]
+const defaultReadmeContent = `# [Your Project Title]
 ## Description
 ## Table of Contents
 - [Installation](#installation)
@@ -18,4 +18,7 @@
 
 ## Tests
 
-## Questions
+## Questions`;
+
+module.exports = defaultReadmeContent;
+// Path: utils/json/menuMsgs.json

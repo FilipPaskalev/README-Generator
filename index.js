@@ -1,37 +1,64 @@
-import inquirer from 'inquirer';
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
+const chalk = require('chalk');
 
-import generateMarkdown from './scripts/generateMarkdown.js';
-import promptQuestions from './utils/prompt/questions.js';
+const MENU_MSGS = require('./utils/json/menuMsgs.json');
+const defaultReadmeContent = require('./utils/js/defaultReadmeContent');
 
-// function to write README file
-function writeToFile(fileName, data) {
-  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
-}
+const welcomeMessage = () => {
+  console.log(chalk.green(MENU_MSGS.welcome));
+  console.log('--------------------------------------');
+};
 
-// function to initialize program
-function init() {
-  const fileExtension = 'md';
-  const fileName = 'README';
-  const outputDir = `./dist/`;
+const generateDefaultReadme = () => {
+  const distDir = path.join(__dirname, 'dist');
+  const readmePath = path.join(distDir, 'README.md');
 
-  console.log(`
-  ===================================================
-            Welcome to the README Generator
-  ===================================================
-        Please answer the following questions to 
-            generate your README.md file.
-  `);
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir);
+  }
 
-  inquirer.prompt(promptQuestions).then((userResponse) => {
-    console.log('Generating Professional README.md File...');
-    writeToFile(`${outputDir}${fileName}.${fileExtension}`, generateMarkdown({ ...userResponse }));
-    console.log(
-      `Your README.md file has been successfully generated at "${outputDir}${fileName}.${fileExtension}"\n`
-    );
-  });
-}
+  fs.writeFileSync(readmePath, defaultReadmeContent);
+  console.log(chalk.green(MENU_MSGS.defaultGenerated));
+};
 
-// function call to initialize program
-init();
+const customTemplateHandler = async () => {
+  console.log('Handle custom template option');
+};
+
+const mainMenu = async () => {
+  welcomeMessage();
+
+  const choices = [
+    { name: 'Default Template', value: 'default' },
+    { name: 'Custom Template', value: 'custom' },
+    new inquirer.Separator(),
+    { name: chalk.red('Exit'), value: 'exit' },
+  ];
+
+  const { option } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'option',
+      message: MENU_MSGS.mainMenu,
+      choices: choices,
+    },
+  ]);
+
+  switch (option) {
+    case 'default':
+      generateDefaultReadme();
+      break;
+    case 'custom':
+      await customTemplateHandler();
+      break;
+    case 'exit':
+      console.log(MENU_MSGS.exitMessage);
+      process.exit(0);
+    default:
+      console.log('Invalid option selected');
+  }
+};
+
+mainMenu();
