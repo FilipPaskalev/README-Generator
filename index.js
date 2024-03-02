@@ -1,30 +1,13 @@
-const fs = require('fs');
-const path = require('path');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 
 const MENU_MSGS = require('./utils/json/menuMsgs.json');
-const defaultReadmeContent = require('./utils/js/defaultReadmeContent');
+const generateDefaultReadme = require('./lib/generateDefaultReadme');
+const generateCustomReadme = require('./lib/generateCustomReadme');
 
 const welcomeMessage = () => {
   console.log(chalk.green(MENU_MSGS.welcome));
   console.log('--------------------------------------');
-};
-
-const generateDefaultReadme = () => {
-  const distDir = path.join(__dirname, 'dist');
-  const readmePath = path.join(distDir, 'README.md');
-
-  if (!fs.existsSync(distDir)) {
-    fs.mkdirSync(distDir);
-  }
-
-  fs.writeFileSync(readmePath, defaultReadmeContent);
-  console.log(chalk.green(MENU_MSGS.defaultGenerated));
-};
-
-const customTemplateHandler = async () => {
-  console.log('Handle custom template option');
 };
 
 const mainMenu = async () => {
@@ -48,10 +31,10 @@ const mainMenu = async () => {
 
   switch (option) {
     case 'default':
-      generateDefaultReadme();
+      await generateDefaultReadme();
       break;
     case 'custom':
-      await customTemplateHandler();
+      await generateCustomReadme();
       break;
     case 'exit':
       console.log(MENU_MSGS.exitMessage);
