@@ -1,0 +1,10 @@
+{
+  "title": "Title:",
+  "description": "Description:",
+  "installation": "Installation info:",
+  "usage": "Usage info:",
+  "license": "License info:",
+  "contributing": "Contributing info:",
+  "tests": "Tests info:",
+  "questions": "Questions info:"
+}
