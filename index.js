@@ -1,37 +1,54 @@
-import inquirer from 'inquirer';
-import fs from 'fs';
-import path from 'path';
+const chalk = require('chalk');
+const inquirer = require('inquirer');
+const path = require('path');
 
-import generateMarkdown from './scripts/generateMarkdown.js';
-import promptQuestions from './utils/prompt/questions.js';
+const MENU_MSGS = require('./utils/json/menuMsgs.json');
+const generateBasicReadme = require('./lib/generators/generateBasicReadme');
+const generateStandardReadme = require('./lib/generators/generateStandardReadme');
+const generateProfessionalReadme = require('./lib/generators/generateProfessionalReadme');
+const generateLicensesJsonFile = require('./lib/generators/generateLicensesJsonFile');
+const generateLicensesOption = require('./lib/generators/generateLicensesOption');
 
-// function to write README file
-function writeToFile(fileName, data) {
-  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
-}
+const mainMenu = async () => {
+  const distDir = path.join(__dirname, '../..', 'dist');
 
-// function to initialize program
-function init() {
-  const fileExtension = 'md';
-  const fileName = 'README';
-  const outputDir = `./dist/`;
+  console.log(chalk.green(MENU_MSGS.welcome));
 
-  console.log(`
-  ===================================================
-            Welcome to the README Generator
-  ===================================================
-        Please answer the following questions to 
-            generate your README.md file.
-  `);
+  const choices = [
+    { name: 'Basic Readme', value: 'basic' },
+    { name: 'Custom Readme', value: 'custom' },
+    { name: 'Professional Readme', value: 'professional' },
+    new inquirer.Separator(),
+    { name: chalk.red('Exit'), value: 'exit' },
+  ];
 
-  inquirer.prompt(promptQuestions).then((userResponse) => {
-    console.log('Generating Professional README.md File...');
-    writeToFile(`${outputDir}${fileName}.${fileExtension}`, generateMarkdown({ ...userResponse }));
-    console.log(
-      `Your README.md file has been successfully generated at "${outputDir}${fileName}.${fileExtension}"\n`
-    );
-  });
-}
+  const { option } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'option',
+      message: MENU_MSGS.mainMenu,
+      choices: choices,
+    },
+  ]);
 
-// function call to initialize program
-init();
+  switch (option) {
+    case 'basic':
+      await generateBasicReadme();
+      break;
+    case 'custom':
+      await generateStandardReadme();
+      break;
+    case 'professional':
+      await generateProfessionalReadme();
+      break;
+    case 'exit':
+      console.log(MENU_MSGS.exitMessage);
+      process.exit(0);
+    default:
+      console.log(MENU_MSGS.invalidOption);
+  }
+};
+
+generateLicensesJsonFile();
+
+mainMenu();

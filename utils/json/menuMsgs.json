@@ -1,0 +1,18 @@
+{
+  "welcome": "Welcome to Readme Generator v1.0.0",
+  "mainMenu": "Select an option:",
+  "defaultGenerated": "Default README.md generated in dist directory.",
+  "customGenerated": "Custom README.md generated in dist directory.",
+  "exitMessage": "Exiting the program...",
+  "invalidOption": "Invalid option. Please select a valid option.",
+  "successGenerated": "README.md generated in dist directory.",
+  "projectTitleEmpty": "Project title cannot be empty.",
+  "projectTitleTooLong": "Project title cannot be longer than 50 characters.",
+  "projectDescriptionEmpty": "Project description cannot be empty.",
+  "installationInstructionsEmpty": "Installation instructions cannot be empty.",
+  "usageInstructionsEmpty": "Usage instructions cannot be empty.",
+  "licenseTypeEmpty": "License type cannot be empty.",
+  "contributingGuidelinesEmpty": "Contributing guidelines cannot be empty.",
+  "testsInformationEmpty": "Tests information cannot be empty.",
+  "questionsSectionEmpty": "Questions section cannot be empty."
+}
