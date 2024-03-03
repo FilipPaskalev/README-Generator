@@ -6,6 +6,8 @@ const MENU_MSGS = require('./utils/json/menuMsgs.json');
 const generateBasicReadme = require('./lib/generators/generateBasicReadme');
 const generateStandardReadme = require('./lib/generators/generateStandardReadme');
 const generateProfessionalReadme = require('./lib/generators/generateProfessionalReadme');
+const generateLicensesJsonFile = require('./lib/generators/generateLicensesJsonFile');
+const generateLicensesOption = require('./lib/generators/generateLicensesOption');
 
 const mainMenu = async () => {
   const distDir = path.join(__dirname, '../..', 'dist');
@@ -46,5 +48,7 @@ const mainMenu = async () => {
       console.log(MENU_MSGS.invalidOption);
   }
 };
+
+generateLicensesJsonFile();
 
 mainMenu();
