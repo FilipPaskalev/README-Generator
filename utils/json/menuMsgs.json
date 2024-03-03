@@ -15,5 +15,12 @@
   "installationInstructionsEmpty": "Installation instructions cannot be empty.",
   "enterUsageInstructions": "Enter the usage instructions:",
   "usageInstructionsEmpty": "Usage instructions cannot be empty.",
-  "enterLicenseType": "Enter the license type:"
+  "enterLicenseType": "Enter the license type:",
+  "licenseTypeEmpty": "License type cannot be empty.",
+  "enterContributingGuidelines": "Enter the contributing guidelines:",
+  "contributingGuidelinesEmpty": "Contributing guidelines cannot be empty.",
+  "enterTestsInformation": "Enter the tests information:",
+  "testsInformationEmpty": "Tests information cannot be empty.",
+  "enterQuestionsSection": "Enter the questions section:",
+  "questionsSectionEmpty": "Questions section cannot be empty."
 }
