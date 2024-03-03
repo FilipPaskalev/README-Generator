@@ -1,10 +1,10 @@
-# ;lweakmrhn
+# My project title
 
-![License: AGPL3](https://img.shields.io/badge/license-AGPL3-blue.svg)
+![License: BSD3](https://img.shields.io/badge/license-BSD3-blue.svg)
 
 ## Description
 
-iwalrjethnj
+:   Provide a short description explaining the what, why, and how of your project
 
 ## Table of Contents
 - [Installation](#installation)
@@ -18,15 +18,15 @@ iwalrjethnj
 
 ## Installation
 
-iwarejtnj
+:    Give the user some instructions how to deal with the installation
 
 ## Usage
 
-iwarej
+Provide instructions and examples how to use the app
 
 ## Contributing
 
-iwaerjn
+Contributions to the project are welcome and encouraged! Follow these steps to contribute
 
 ## Credits
 
@@ -38,21 +38,21 @@ If you followed tutorials, include links to those here as well.
 
 ## Tests
 
-irehjn
+Explain how to run test
 
 ## Questions
 
 If you have any questions or need assistance, feel free to reach out:
-- **Email:** [rgtrjn](mailto:your.email@example.com)
-- **GitHub Issues:** [Project Issues](https://github.com/rgtij/;lweakmrhn/issues)
+- **Email:** [myemail@mail.com](mailto:your.email@example.com)
+- **GitHub Issues:** [Project Issues](https://github.com/Phil/My project title/issues)
 - **Community Forums:** Join our community forums to engage with other users and developers.
 
-Visit my profile at GitHub -> [rgtij](https://github.com/rgtij).
+Visit my profile at GitHub -> [Phil](https://github.com/Phil).
 
-For additional questions, contact [rgtrjn](mailto:rgtrjn).
+For additional questions, contact [myemail@mail.com](mailto:myemail@mail.com).
 
 ## License
 
-![License: AGPL3](https://img.shields.io/badge/license-AGPL3-blue.svg)
+![License: BSD3](https://img.shields.io/badge/license-BSD3-blue.svg)
 
 Check LICENSE file for more information.
