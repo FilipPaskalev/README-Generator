@@ -1,12 +1,15 @@
-const inquirer = require('inquirer');
 const chalk = require('chalk');
+const inquirer = require('inquirer');
+const path = require('path');
 
 const MENU_MSGS = require('./utils/json/menuMsgs.json');
-const generateBasicReadme = require('./lib/generateBasicReadme');
-const generateStandardReadme = require('./lib/generateStandardReadme');
-const generateProfessionalReadme = require('./lib/generateProfessionalReadme');
+const generateBasicReadme = require('./lib/generators/generateBasicReadme');
+const generateStandardReadme = require('./lib/generators/generateStandardReadme');
+const generateProfessionalReadme = require('./lib/generators/generateProfessionalReadme');
 
 const mainMenu = async () => {
+  const distDir = path.join(__dirname, '../..', 'dist');
+
   console.log(chalk.green(MENU_MSGS.welcome));
 
   const choices = [
