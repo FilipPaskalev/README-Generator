@@ -22,12 +22,11 @@ This is a command-line application built with ES6 and Node.js that dynamically g
   - [Usage](#usage)
     - [Start the application](#start-the-application)
     - [Basic README Generation](#basic-readme-generation)
+      - [Basic option preview](#basic-option-preview)
     - [Custom README Generation](#custom-readme-generation)
+      - [Custom option preview](#custom-option-preview)
     - [Professional README Generation](#professional-readme-generation)
-    - [Terminal app preview](#terminal-app-preview)
-      - [Basic option](#basic-option)
-      - [Custom option](#custom-option)
-      - [Professional option](#professional-option)
+      - [Professional option preview](#professional-option-preview)
   - [Contributing](#contributing)
   - [Dependencies](#dependencies)
     - [Chalk 4.0.0](#chalk-400)
@@ -121,9 +120,12 @@ When the application starts, you will be presented with a menu to choose the typ
 
 ### Basic README Generation
 
-Choose this option to generate a skeleton README without any user input.
+Choose this option to generate a skeleton README without any user input, except project name.
 
 ![select-basic-readme](./assets/selec-basic-readme.png)
+#### Basic option preview
+
+![video-preview-of-choosing-basic-readme-option](./assets/basi-option-video.gif)
 
 ### Custom README Generation
 
@@ -131,19 +133,19 @@ Select this option to generate a README by providing information for each sectio
 
 ![select-custom-readme](./assets/select-custom-readme.png)
 
+#### Custom option preview
+
+![video-preview-of-choosing-custom-readme-option](./assets/custom-option-video.gif)
+
 ### Professional README Generation
 
 Choose this option to generate a comprehensive README with all available options, including license selection, contributing guidelines, and more.
 
 ![select-professional-readme](./assets/select-professional-readme.png)
 
-### Terminal app preview
+#### Professional option preview
 
-#### Basic option
-
-#### Custom option
-
-#### Professional option
+![video-preview-of-choosing-professional-readme-option](./assets/professional-option-video.gif)
 
 ## Contributing
 
@@ -216,8 +218,9 @@ If you have any questions or need further assistance, feel free to reach out:
 [Link 8](https://opensource.org/license/bsl-1-0/) | 
 [Link 9](https://github.com/licenses/license-templates) | 
 [Link 10](https://stackoverflow.com/questions/10049557/reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object) | 
-https://contributing.md/example/
-
+[Link 11](https://contributing.md/example/) | 
+[Link 12](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide) | 
+[Link 13](https://www.npmjs.com/package/inquirer) | 
 
 ## License
 
